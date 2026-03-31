@@ -1,0 +1,26 @@
+RewriteEngine On
+
+# -------------------------------------------------
+# 1. Redirect .php URLs to clean URLs (GET only)
+# -------------------------------------------------
+RewriteCond %{THE_REQUEST} \s/+(.+?)\.php(\?| ) [NC]
+RewriteCond %{REQUEST_METHOD} GET
+RewriteRule ^ %1 [R=301,L]
+
+# -------------------------------------------------
+# 2. Internally rewrite clean URLs to .php
+# -------------------------------------------------
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteCond %{REQUEST_FILENAME}.php -f
+RewriteRule ^(.+)$ $1.php [L]
+
+# -------------------------------------------------
+# 3. Allow POST requests to .php (AJAX / forms)
+# -------------------------------------------------
+RewriteCond %{REQUEST_METHOD} POST
+RewriteRule ^(.+)\.php$ - [L]
+
+# -------------------------------------------------
+# 4. Custom 404
+# -------------------------------------------------
+ErrorDocument 404 /404.php
