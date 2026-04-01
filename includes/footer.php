@@ -44,8 +44,9 @@ if (!isset($header_path_prefix)) {
                 <div class="footer_link">
                     <h3>Quick Links</h3>
                     <ul>
-                        <li><a href="#">Privacy Policy</a></li>
-                        <li><a href="#">Terms & Conditions</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>privacy-policy.php">Privacy Policy</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>terms-and-conditions.php">Terms & Conditions</a>
+                        </li>
                         <li><a href="<?php echo $header_path_prefix; ?>return-policy.php">Return Policy</a></li>
                         <li><a href="#">FAQ's</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>shipping-policy.php">Shipping Policy</a></li>
