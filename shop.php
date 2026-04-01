@@ -200,6 +200,15 @@ $categories_result = $conn->query($cat_sql);
             background: #1ebe5d;
         }
 
+        /* Product color disclaimer */
+        .listing-disclaimer {
+            color: #c0392b;
+            font-size: 20px;
+            font-weight: 600;
+            margin: 0 0 18px;
+            text-align: center;
+        }
+
         .svss-popup-close {
             position: absolute;
             top: 10px;
@@ -371,6 +380,9 @@ $categories_result = $conn->query($cat_sql);
                                 </div>
                             </div>
                         </div>
+
+                        <p class="listing-disclaimer">Disclaimer - the product colour may slightly vary due to
+                            photographic lighting sources or your monitor settings.</p>
 
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"

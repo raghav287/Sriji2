@@ -75,6 +75,13 @@
                         To ensure a smooth return or exchange process, please carefully read the policy below:
                     </p>
 
+                    <h3>Important Notes</h3>
+                    <ul>
+                        <li>No return/exchange on customized products.</li>
+                        <li>Delay during festivals is possible.</li>
+                        <li>Custom work starts only after confirmation &amp; payment.</li>
+                    </ul>
+
                     <h3>1. Unboxing Video Policy</h3>
                     <p>
                         A clear and continuous opening (unboxing) video is mandatory for all return or exchange requests.
@@ -198,6 +205,21 @@
                         Once the exchanged product is delivered,
                         no further exchange or refund will be applicable.
                     </p>
+
+                    <h3>12. Customization Rules &amp; Regulations</h3>
+                    <p>
+                        For custom Devi-Devta dress orders, please note:
+                    </p>
+                    <ul>
+                        <li>Customization is offered for all Devi-Devta dresses.</li>
+                        <li>Each order is made to your measurements—take accurate measurements; we can guide you.</li>
+                        <li>Advance payment is required to confirm the order.</li>
+                        <li>Once confirmed, the order cannot be cancelled or refunded.</li>
+                        <li>Custom orders take 3–10 working days depending on design complexity.</li>
+                        <li>Delivery timelines may increase during festive seasons.</li>
+                        <li>Slight variations in color or design may occur because items are handmade.</li>
+                        <li>Customers must clearly confirm size, color, and design details on WhatsApp.</li>
+                    </ul>
 
                 </div>
             </div>
