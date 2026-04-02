@@ -192,7 +192,7 @@ error_reporting(E_ALL);
             <div class="row">
                 <?php
                 // Fetch All Active Categories
-                $cat_sql = "SELECT * FROM categories WHERE status='active'";
+                $cat_sql = "SELECT * FROM categories WHERE status='active' AND featured=1 LIMIT 6";
                 $cat_res = $conn->query($cat_sql);
                 if ($cat_res->num_rows > 0) {
                     while ($cat = $cat_res->fetch_assoc()) {
@@ -253,7 +253,7 @@ error_reporting(E_ALL);
             <div class="row">
                 <div class="col-xl-6 col-sm-9">
                     <div class="section_heading_2 section_heading">
-                        <h3>Our <span><?php echo htmlspecialchars($cat_name); ?></span> Products</h3>
+                        <h3> <span><?php echo htmlspecialchars($cat_name); ?></span> </h3>
                     </div>
                 </div>
                 <div class="col-xl-6 col-sm-3 d-none d-md-block">
@@ -281,10 +281,11 @@ error_reporting(E_ALL);
                 <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
                     <div class="product_item_2 product_item">
                         <div class="product_img zoom-wrapper zoom-container">
-
-                            <img src="<?php echo $p_img; ?>" alt="<?php echo htmlspecialchars($prod['name']); ?>"
-                                class="img-fluid w-100 zoom-image">
-
+                            <a class="venobox product-lightbox" data-gall="home-gallery-<?php echo $cat_id; ?>"
+                                href="<?php echo $p_img; ?>" title="<?php echo htmlspecialchars($prod['name']); ?>">
+                                <img src="<?php echo $p_img; ?>" alt="<?php echo htmlspecialchars($prod['name']); ?>"
+                                    class="img-fluid w-100 zoom-image">
+                            </a>
 
                             <div class="product-watermark">srijivastrashingarsewa.com</div>
                         </div>

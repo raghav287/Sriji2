@@ -268,6 +268,7 @@ $related_products = $stmt_rel->get_result();
                                     echo htmlspecialchars(mb_strimwidth($desc_clean, 0, 200, "..."));
                                     ?>
                                 </p>
+
                                 <?php if (!empty($unique_sizes)): ?>
                                 <div class="details_single_variant">
                                     <p class="variant_title">Size :</p>
@@ -345,10 +346,16 @@ $related_products = $stmt_rel->get_result();
                                     <li><a href="https://api.whatsapp.com/send?text=<?php echo $share_title . ' ' . $share_url_enc; ?>"
                                             target="_blank"><i class="fab fa-whatsapp"></i></a></li>
                                 </ul>
-
+                                <p class="product_disclaimer"
+                                    style="margin-top:8px; font-size:14px; color:#b94a48; line-height:1.5;">
+                                    <strong>Disclaimer:</strong> Slight variations in colour may occur due to lighting
+                                    and screen settings. Design placement may also vary slightly depending on size of
+                                    the dress for the best overall appearance.
+                                </p>
                             </div>
                         </div>
                     </div>
+
                     <div class="row mt_90 wow fadeInUp">
                         <div class="col-12">
                             <div class="shop_details_des_area">

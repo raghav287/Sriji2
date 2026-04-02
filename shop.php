@@ -15,6 +15,7 @@ $min_price_filter = isset($_GET['min_price']) ? (int) $_GET['min_price'] : null;
 $max_price_filter = isset($_GET['max_price']) ? (int) $_GET['max_price'] : null;
 $sort_option = isset($_GET['sort']) ? $_GET['sort'] : 'default';
 $status_filter = isset($_GET['status']) ? $_GET['status'] : []; // Array of statuses
+$color_filter = isset($_GET['color']) ? trim($_GET['color']) : '';
 $search_query = isset($_GET['search']) ? $_GET['search'] : '';
 
 // --- Build Query Conditions ---
@@ -67,6 +68,17 @@ if ($min_price_filter !== null && $max_price_filter !== null) {
     $types .= "dd";
 }
 
+// Color Filter
+if (!empty($color_filter)) {
+    $where_clauses[] = "EXISTS (
+        SELECT 1 FROM product_variants pv 
+        JOIN product_sizes ps ON pv.product_size_id = ps.id 
+        WHERE ps.product_id = p.id AND pv.color = ?
+    )";
+    $params[] = $color_filter;
+    $types .= "s";
+}
+
 // --- Sorting ---
 $order_by = "p.created_at DESC"; // Default: New Added
 if ($sort_option == 'low_high') {
@@ -117,6 +129,22 @@ $products_result = $stmt->get_result();
 $cat_sql = "SELECT c.*, (SELECT COUNT(*) FROM products p WHERE p.category_id = c.id AND p.status='active') as count 
             FROM categories c WHERE c.status='active'";
 $categories_result = $conn->query($cat_sql);
+
+// --- Color Filter Options ---
+$color_options = [];
+$color_sql = "
+    SELECT DISTINCT pv.color 
+    FROM product_variants pv
+    JOIN product_sizes ps ON pv.product_size_id = ps.id
+    JOIN products p ON ps.product_id = p.id
+    WHERE pv.color IS NOT NULL AND pv.color <> '' AND p.status = 'active'
+    ORDER BY pv.color ASC";
+$color_res = $conn->query($color_sql);
+if ($color_res && $color_res->num_rows > 0) {
+    while ($row = $color_res->fetch_assoc()) {
+        $color_options[] = $row['color'];
+    }
+}
 // --- Pagination Configuration ---
 
 ?>
@@ -319,6 +347,32 @@ $categories_result = $conn->query($cat_sql);
                                     ?>
                                     </ul>
                                 </div>
+
+                                <?php if (!empty($color_options)): ?>
+                                <div class="sidebar_category mt_30">
+                                    <h3>Colour</h3>
+                                    <ul>
+                                        <?php
+                                            $link_base = $_GET;
+                                            unset($link_base['color'], $link_base['page']); // reset page when filtering
+                                            $suffix = http_build_query($link_base);
+                                            $suffix = $suffix ? '&' . $suffix : '';
+                                        ?>
+                                        <li><a href="shop.php?color=<?php echo urlencode(''); ?><?php echo $suffix; ?>"
+                                                class="<?php echo $color_filter === '' ? 'active' : ''; ?>">All Colours</a>
+                                        </li>
+                                        <?php foreach ($color_options as $c): ?>
+                                        <li>
+                                            <a href="shop.php?color=<?php echo urlencode($c); ?><?php echo $suffix; ?>"
+                                                class="<?php echo strtolower($color_filter) === strtolower($c) ? 'active' : ''; ?>">
+                                                <?php echo htmlspecialchars($c); ?>
+                                            </a>
+                                        </li>
+                                        <?php endforeach; ?>
+                                    </ul>
+                                </div>
+                                <?php endif; ?>
+
                                 <div class="mt-4">
                                     <a href="shop.php" class="common_btn w-100 text-center">Reset Filter</a>
                                 </div>
@@ -353,24 +407,26 @@ $categories_result = $conn->query($cat_sql);
                                 <div class="col-8 col-xl-6 col-md-6">
                                     <ul class="product_page_sorting">
                                         <li>
+                                            <?php
+                                                $sort_base = $_GET;
+                                                unset($sort_base['sort'], $sort_base['page']);
+                                                $suffix = http_build_query($sort_base);
+                                                $suffix = $suffix ? '&' . $suffix : '';
+                                            ?>
                                             <select class="select_js" onchange="location = this.value;">
-                                                <option
-                                                    value="shop.php?sort=default<?php echo $selected_category ? '&category=' . $selected_category : ''; ?>"
+                                                <option value="shop.php?sort=default<?php echo $suffix; ?>"
                                                     <?php echo $sort_option == 'default' ? 'selected' : ''; ?>>Default
                                                     Sorting
                                                 </option>
-                                                <option
-                                                    value="shop.php?sort=low_high<?php echo $selected_category ? '&category=' . $selected_category : ''; ?>"
+                                                <option value="shop.php?sort=low_high<?php echo $suffix; ?>"
                                                     <?php echo $sort_option == 'low_high' ? 'selected' : ''; ?>>Low to
                                                     High
                                                 </option>
-                                                <option
-                                                    value="shop.php?sort=high_low<?php echo $selected_category ? '&category=' . $selected_category : ''; ?>"
+                                                <option value="shop.php?sort=high_low<?php echo $suffix; ?>"
                                                     <?php echo $sort_option == 'high_low' ? 'selected' : ''; ?>>High to
                                                     Low
                                                 </option>
-                                                <option
-                                                    value="shop.php?sort=new_added<?php echo $selected_category ? '&category=' . $selected_category : ''; ?>"
+                                                <option value="shop.php?sort=new_added<?php echo $suffix; ?>"
                                                     <?php echo $sort_option == 'new_added' ? 'selected' : ''; ?>>New
                                                     Added
                                                 </option>
@@ -381,8 +437,8 @@ $categories_result = $conn->query($cat_sql);
                             </div>
                         </div>
 
-                        <p class="listing-disclaimer">Disclaimer - the product colour may slightly vary due to
-                            photographic lighting sources or your monitor settings.</p>
+                        <!-- <p class="listing-disclaimer">Disclaimer - the product colour may slightly vary due to
+                            photographic lighting sources or your monitor settings.</p> -->
 
                         <div class="tab-content" id="nav-tabContent">
                             <div class="tab-pane fade show active" id="nav-home" role="tabpanel"
@@ -408,9 +464,13 @@ $categories_result = $conn->query($cat_sql);
                                     <div class="col-xxl-3 col-6 col-md-4 col-lg-6 col-xl-4 wow fadeInUp">
                                         <div class="product_item_2 product_item">
                                             <div class="product_img">
-                                                <img src="<?php echo $prod_img; ?>"
-                                                    alt="<?php echo htmlspecialchars($prod['name']); ?>"
-                                                    class="img-fluid w-100">
+                                                <a class="venobox product-lightbox" data-gall="shop-gallery"
+                                                    href="<?php echo $prod_img; ?>"
+                                                    title="<?php echo htmlspecialchars($prod['name']); ?>">
+                                                    <img src="<?php echo $prod_img; ?>"
+                                                        alt="<?php echo htmlspecialchars($prod['name']); ?>"
+                                                        class="img-fluid w-100">
+                                                </a>
                                                 <div class="product-watermark">srijivastrashingarsewa.com</div>
 
                                                 <!-- Discount/New Badges could go here -->
@@ -499,9 +559,13 @@ $categories_result = $conn->query($cat_sql);
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="product_img">
-                                                        <img src="<?php echo $prod_img; ?>"
-                                                            alt="<?php echo htmlspecialchars($prod['name']); ?>"
-                                                            class="img-fluid w-100">
+                                                        <a class="venobox product-lightbox" data-gall="shop-gallery"
+                                                            href="<?php echo $prod_img; ?>"
+                                                            title="<?php echo htmlspecialchars($prod['name']); ?>">
+                                                            <img src="<?php echo $prod_img; ?>"
+                                                                alt="<?php echo htmlspecialchars($prod['name']); ?>"
+                                                                class="img-fluid w-100">
+                                                        </a>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-8">

@@ -141,7 +141,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $final_cod_charge = ($cart_subtotal < $c_cap) ? $c_below : $c_above;
     }
 
-    $grand_total = $cart_subtotal + $shipping_cost + $final_cod_charge;
+    // Prepaid discount (one-time per phone)
+    $prepaid_discount = 0;
+    $discount_tag = '[PREPAID5_USED]';
+    if ($payment_method !== 'COD') {
+        $eligible_for_discount = true;
+        if (!empty($phone)) {
+            $check_sql = $conn->prepare("SELECT id FROM orders WHERE customer_phone = ? AND order_notes LIKE ?");
+            $like = "%" . $discount_tag . "%";
+            $check_sql->bind_param("ss", $phone, $like);
+            $check_sql->execute();
+            $res_check = $check_sql->get_result();
+            if ($res_check && $res_check->num_rows > 0) {
+                $eligible_for_discount = false;
+            }
+        }
+        if ($eligible_for_discount) {
+            $prepaid_discount = round($cart_subtotal * 0.05, 2);
+        }
+    }
+
+    $grand_total = $cart_subtotal - $prepaid_discount + $shipping_cost + $final_cod_charge;
+    if ($grand_total < 0) $grand_total = 0;
 
     // --- 3. Create Order in DB ---
     $order_number = "ORD-" . time() . "-" . rand(100, 999);
@@ -150,9 +171,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $status = 'pending_payment';
     }
 
+    // Attach discount marker to notes if applied
+    $order_notes_final = $order_notes;
+    if ($prepaid_discount > 0) {
+        $order_notes_final .= "\nPrepaid 5% discount applied: ₹" . number_format($prepaid_discount, 2) . " {$discount_tag}";
+    }
+
     // Insert Order
     $stmt = $conn->prepare("INSERT INTO orders (user_id, order_number, customer_name, customer_email, customer_phone, shipping_address, total_amount, status, payment_method, payment_status, order_notes) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, 'pending', ?)");
-    $stmt->bind_param("isssssdsss", $user_id, $order_number, $name_input, $email, $phone, $full_shipping_address, $grand_total, $status, $payment_method, $order_notes);
+    $stmt->bind_param("isssssdsss", $user_id, $order_number, $name_input, $email, $phone, $full_shipping_address, $grand_total, $status, $payment_method, $order_notes_final);
 
     if (!$stmt->execute()) {
         echo json_encode(['status' => 'error', 'message' => 'Order creation failed: ' . $stmt->error]);

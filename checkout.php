@@ -341,6 +341,10 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                                 <span><?php echo $shipping_cost > 0 ? '₹' . number_format($shipping_cost, 2) : 'Free'; ?></span>
                             </h6>
 
+                            <h6 id="prepaid_discount_row" style="display:none;">Prepaid Discount (5%)
+                                <span>-₹<?php echo number_format(round($cart_total * 0.05, 2), 2); ?></span>
+                            </h6>
+
                             <h6 id="cod_fee_display" style="display: <?php echo $cod_active ? 'flex' : 'none'; ?>;">COD
                                 Fee <span>₹<?php echo number_format($cod_charge, 2); ?></span></h6>
 
@@ -348,12 +352,28 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                                 <span>₹<?php echo number_format($total_with_shipping + ($cod_active ? $cod_charge : 0), 2); ?></span>
                             </h4>
 
+                            <button type="button" class="btn btn-link p-0 mt-2"
+                                id="trigger_gift_popup"
+                                style="font-size:13px; color:#b35a00; text-decoration:underline;">
+                                Thinking to cancel? Tap here first.
+                            </button>
+
                             <!-- Hidden inputs for JS/Form -->
                             <input type="hidden" id="base_total" value="<?php echo $total_with_shipping; ?>">
                             <input type="hidden" id="cod_charge_val" value="<?php echo $cod_charge; ?>">
+                            <input type="hidden" id="prepaid_discount_val"
+                                value="<?php echo round($cart_total * 0.05, 2); ?>">
 
                             <div class="checkout_payment">
                                 <h3>payment method</h3>
+                                <p style="font-size: 13px; color:#666; margin-top:-6px; margin-bottom:6px;">
+                                    Pay online to get an extra 5% off (works great on combo offers). Limit one discounted prepaid order per phone number.
+                                </p>
+                                <div style="font-size:12px; color:#0b7a2a; font-weight:600; margin-bottom:8px;">
+                                    🎁 Surprise Gift Included on prepaid orders — it will be added to your package automatically.
+                                </div>
+                                <button type="button" class="btn btn-link p-0" id="open_prepaid_offer"
+                                    style="font-size:12px;">View prepaid offer details</button>
                                 <?php if ($cod_active): ?>
                                     <div class="form-check" id="cod_payment_section">
                                         <input class="form-check-input payment-radio" type="radio" name="payment_method"
@@ -496,7 +516,11 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
             const paymentMethod = $('input[name="payment_method"]:checked').val();
 
             if (paymentMethod === 'COD') {
-                $('#codConfirmationModal').modal('show');
+                if (window.codModal) {
+                    window.codModal.show();
+                } else {
+                    processOrderSubmission(this);
+                }
             } else {
                 processOrderSubmission(this);
             }
@@ -537,7 +561,9 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                             "color": "#B48E43",
                             "modal": {
                                 "ondismiss": function () {
-                                    $('#paymentExitModal').modal('show');
+                                    if (window.payExitModal) {
+                                        window.payExitModal.show();
+                                    }
                                 }
                             }
                         };
@@ -568,25 +594,69 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
 
         // Payment Exit Modal Handlers
         $(document).ready(function () {
+            // Bootstrap 5 modal instances (no jQuery plugins)
+            const payExitEl = document.getElementById('paymentExitModal');
+            const codEl = document.getElementById('codConfirmationModal');
+            const prepaidOfferEl = document.getElementById('prepaidOfferModal');
+            window.payExitModal = payExitEl ? new bootstrap.Modal(payExitEl, { backdrop: 'static', keyboard: false }) : null;
+            window.codModal = codEl ? new bootstrap.Modal(codEl, { backdrop: 'static', keyboard: false }) : null;
+            window.prepaidOfferModal = prepaidOfferEl ? new bootstrap.Modal(prepaidOfferEl) : null;
+            let codCancelRequested = false;
+
+            // Always show prepaid offer on checkout load
+            if (window.prepaidOfferModal) {
+                setTimeout(() => window.prepaidOfferModal.show(), 300);
+            }
+
             $('#btnContinuePayment').on('click', function () {
-                $('#paymentExitModal').modal('hide');
+                if (window.payExitModal) window.payExitModal.hide();
                 if (window.rzp1) {
                     window.rzp1.open();
                 }
             });
 
             $('#btnCancelPayment').on('click', function () {
-                $('#paymentExitModal').modal('hide');
+                if (window.payExitModal) window.payExitModal.hide();
                 const submitBtn = $('#checkoutForm').find('button[type="submit"]');
                 submitBtn.prop('disabled', false).text('Place order');
             });
 
+            $('#trigger_gift_popup').on('click', function (e) {
+                e.preventDefault();
+                if (window.payExitModal) window.payExitModal.show();
+            });
+
+            $('#open_prepaid_offer').on('click', function (e) {
+                e.preventDefault();
+                if (window.prepaidOfferModal) window.prepaidOfferModal.show();
+            });
+
+            $('#choosePrepaidBtn').on('click', function () {
+                $('input[name="payment_method"][value="Online"]').prop('checked', true).trigger('change');
+                if (window.prepaidOfferModal) window.prepaidOfferModal.hide();
+            });
+
             // Confirm COD Order Handler
             $('#confirmCodOrder').on('click', function () {
-                $('#codConfirmationModal').modal('hide');
+                if (window.codModal) window.codModal.hide();
                 const form = document.getElementById('checkoutForm');
                 processOrderSubmission(form);
             });
+
+            $('#codCancelBtn').on('click', function () {
+                codCancelRequested = true;
+            });
+
+            if (codEl) {
+                codEl.addEventListener('hidden.bs.modal', function () {
+                    if (codCancelRequested && window.payExitModal) {
+                        codCancelRequested = false;
+                        window.payExitModal.show();
+                    }
+                });
+            }
+
+            // No dismissal gating; keep showing on every load
         });
 
         function verifyPayment(razorpay_response, sys_order_id) {
@@ -616,13 +686,20 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                 var paymentMethod = $('input[name="payment_method"]:checked').val();
                 var baseTotal = parseFloat($('#base_total').val());
                 var codCharge = parseFloat($('#cod_charge_val').val());
+                var prepaidDiscount = parseFloat($('#prepaid_discount_val').val());
                 var finalTotal = baseTotal;
 
                 if (paymentMethod === 'COD') {
                     finalTotal += codCharge;
                     $('#cod_fee_display').show();
+                    $('#prepaid_discount_row').hide();
                 } else {
                     $('#cod_fee_display').hide();
+                    if (!isNaN(prepaidDiscount) && prepaidDiscount > 0) {
+                        finalTotal -= prepaidDiscount;
+                        if (finalTotal < 0) finalTotal = 0;
+                        $('#prepaid_discount_row').show();
+                    }
                 }
                 
                 // Hide total display if PayPal (or keep it?)
@@ -719,19 +796,45 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title" id="paymentExitModalLabel">Wait! Don't leave yet...</h5>
+                    <h5 class="modal-title" id="paymentExitModalLabel">Wait! Don’t miss out on a surprise gift with your order.</h5>
                     <!-- No close button to force choice -->
                 </div>
                 <div class="modal-body text-center">
                     <img src="assets/images/payment_success_img2.png" alt="wait" class="img-fluid mb-3"
                         style="max-height: 150px;">
-                    <p class="mb-3">We're sad to see you go! You are just moments away from completing your order.</p>
-                    <p class="text-muted small">Complete your payment now to secure your items.</p>
+                    <p class="mb-3">Complete your payment now to unlock an extra 5% prepaid discount on combos <strong>and we’ll add a surprise gift to your package.</strong></p>
+                    <p class="text-muted small mb-1">The gift is automatically included with your prepaid order—no code needed.</p>
+                    <p class="text-muted small">You’ll see “Surprise Gift Included” on the confirmation screen and email after payment.</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pb-4">
                     <button type="button" class="btn btn-secondary" id="btnCancelPayment">Cancel Order</button>
                     <button type="button" class="btn btn-primary common_btn" id="btnContinuePayment"
                         style="padding: 10px 20px;">Continue Payment</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Prepaid 5% Offer Modal -->
+    <div class="modal fade" id="prepaidOfferModal" tabindex="-1" aria-labelledby="prepaidOfferModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header border-0 pb-0">
+                    <h5 class="modal-title" id="prepaidOfferModalLabel">Get 5% Extra Discount on Prepaid</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body text-center pt-3">
+                    <img src="assets/images/payment_success_img2.png" alt="offer" class="img-fluid mb-3"
+                        style="max-height: 140px;">
+                    <p class="mb-2">Pay online and save an additional <strong>5%</strong> on your order.</p>
+                    <p class="text-muted small mb-1">Automatically applied to prepaid orders—no coupon required.</p>
+                    <p class="text-muted small">Limit: one discounted prepaid order per phone number.</p>
+                </div>
+                <div class="modal-footer justify-content-center border-0 pb-4">
+                    <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">Maybe later</button>
+                    <button type="button" class="btn btn-primary common_btn" id="choosePrepaidBtn"
+                        style="padding: 10px 18px;">Choose Prepaid & Save 5%</button>
                 </div>
             </div>
         </div>
@@ -750,7 +853,7 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                     <p>Are you sure you want to place this order using <strong>Cash on Delivery</strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="codCancelBtn">Cancel</button>
                     <button type="button" class="btn btn-primary common_btn" id="confirmCodOrder">Yes, Place
                         Order</button>
                 </div>

@@ -279,7 +279,21 @@
                     </div>
                     <ul class="menu_item">
                         <li><a class="active" href="<?php echo $header_path_prefix; ?>/">Home</a></li>
-                        <li><a href="<?php echo $header_path_prefix; ?>shop">Shop</a></li>
+                        <li class="menu_shop_dropdown">
+                            <a href="<?php echo $header_path_prefix; ?>shop">Shop</a>
+                            <?php if (!empty($header_categories)): ?>
+                            <ul class="shop_dropdown_list shop_dropdown_grid">
+                                <?php foreach ($header_categories as $h_cat):
+                                    ?>
+                                <li>
+                                    <a href="<?php echo $header_path_prefix; ?>shop.php?category=<?php echo $h_cat['id']; ?>">
+                                        <?php echo htmlspecialchars($h_cat['name']); ?>
+                                    </a>
+                                </li>
+                                <?php endforeach; ?>
+                            </ul>
+                            <?php endif; ?>
+                        </li>
                         <li><a href="<?php echo $header_path_prefix; ?>about_us">About Us</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>track-order">Track Order</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>contact">Contact</a></li>
