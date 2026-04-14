@@ -286,7 +286,8 @@
                                 <?php foreach ($header_categories as $h_cat):
                                     ?>
                                 <li>
-                                    <a href="<?php echo $header_path_prefix; ?>shop.php?category=<?php echo $h_cat['id']; ?>">
+                                    <a
+                                        href="<?php echo $header_path_prefix; ?>shop.php?category=<?php echo $h_cat['id']; ?>">
                                         <?php echo htmlspecialchars($h_cat['name']); ?>
                                     </a>
                                 </li>
@@ -297,6 +298,10 @@
                         <li><a href="<?php echo $header_path_prefix; ?>about_us">About Us</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>track-order">Track Order</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>contact">Contact</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>customer-suggestion">Customer
+                                Suggestion </a>
+                        </li>
+
                     </ul>
                     <ul class="menu_icon">
                         <li>

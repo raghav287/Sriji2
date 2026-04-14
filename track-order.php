@@ -24,6 +24,37 @@
     <link rel="stylesheet" href="assets/css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
     <link rel="stylesheet" href="assets/css/responsive.css">
+
+    <style>
+    .page_banner {
+        background-size: cover !important;
+        background-position: center !important;
+        background-repeat: no-repeat !important;
+        aspect-ratio: 38 / 5;
+        min-height: 160px;
+    }
+
+    @media (max-width: 768px) {
+        .page_banner {
+            aspect-ratio: unset;
+            min-height: 200px;
+        }
+    }
+
+    /* Ensure banner background keeps its aspect ratio across breakpoints */
+    .page_banner {
+        background-size: cover;
+        background-position: center;
+        background-repeat: no-repeat;
+    }
+
+    @media (max-width: 768px) {
+        .page_banner {
+            background-size: cover;
+            /* keep ratio while filling smaller screens */
+        }
+    }
+    </style>
 </head>
 
 <body class="default_home">
@@ -40,7 +71,7 @@
     <!--=========================
         PAGE BANNER START
     ==========================-->
-    <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+    <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
         <div class="page_banner_overlay">
             <div class="container">
                 <div class="row">

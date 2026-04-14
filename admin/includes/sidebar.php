@@ -27,6 +27,13 @@
                 <li class="sub-category">
                     <h3>Management</h3>
                 </li>
+
+                <li class="slide">
+                    <a class="side-menu__item" data-bs-toggle="slide"
+                        href="https://app.shiprocket.in/seller/user-profile" target="_blank"><i
+                            class="side-menu__icon fe fe-layers"></i><span
+                            class="side-menu__label">Shiprocket</span></a>
+                </li>
                 <li class="slide">
                     <a class="side-menu__item" data-bs-toggle="slide" href="categories.php"><i
                             class="side-menu__icon fe fe-layers"></i><span

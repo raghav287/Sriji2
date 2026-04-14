@@ -78,10 +78,10 @@
                 <div class="row">
                     <div class="col-12">
                         <div class="page_banner_text wow fadeInUp">
-                            <h1>Contact Us</h1>
+                            <h1>Customer Suggestion</h1>
                             <ul>
                                 <li><a href="#"><i class="fal fa-home-lg"></i> Home</a></li>
-                                <li><a href="#">Contact Us</a></li>
+                                <li><a href="#">Customer Suggestion</a></li>
                             </ul>
                         </div>
                     </div>
@@ -92,103 +92,19 @@
     <!--=========================
         PAGE BANNER START
     ==========================-->
+    <div style="width: 100%; display: flex; justify-content: center; align-items: center;">
 
+        <iframe
+            src="https://docs.google.com/forms/d/e/1FAIpQLSeUAYN9ZfiBUnARxr959qQW4XyXQRqdHttQBhzfrk5RoJyZ9w/viewform?embedded=true"
+            width="640" height="850" frameborder="0" marginheight="0" marginwidth="0">Loading…</iframe>
+    </div>
 
     <!--============================
         CONTACT US START
     =============================-->
     <section class="contact_us mt_75">
-        <div class="container">
-            <div class="row">
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_info wow fadeInUp">
-                        <span><img src="assets/images/call_icon_black.png" alt="call" class="img-fluid"></span>
-                        <h3>Call Us</h3>
-                        <a href="callto:+919115936593">+91 9115936593</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_info wow fadeInUp">
-                        <span><img src="assets/images/mail_icon_black.png" alt="Mail" class="img-fluid"></span>
-                        <h3>Email Us</h3>
-                        <a href="mailto:info@srijivastrashingarsewa.com">info@srijivastrashingarsewa.com</a>
-                    </div>
-                </div>
-                <div class="col-xl-4 col-md-6">
-                    <div class="contact_info wow fadeInUp">
-                        <span><img src="assets/images/location_icon_black.png" alt="Map" class="img-fluid"></span>
-                        <h3>Our Location</h3>
-                        <p>Palm Village Apartment, Sector-126, Mohali</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row mt_75">
-                <div class="col-lg-5">
-                    <div class="contact_img wow fadeInLeft">
-                        <img src="assets/images/contact_message.jpg" alt="contact" class="img-fluid w-100">
-                        <div class="contact_hotline">
-                            <h3>Helpline</h3>
-                            <a href="callto:+919115936593">+91 9115936593</a>
-                            <div class="icon">
-                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24"
-                                    stroke-width="1.5" stroke="currentColor" class="size-6">
-                                    <path stroke-linecap="round" stroke-linejoin="round"
-                                        d="M14.857 17.082a23.848 23.848 0 0 0 5.454-1.31A8.967 8.967 0 0 1 18 9.75V9A6 6 0 0 0 6 9v.75a8.967 8.967 0 0 1-2.312 6.022c1.733.64 3.56 1.085 5.455 1.31m5.714 0a24.255 24.255 0 0 1-5.714 0m5.714 0a3 3 0 1 1-5.714 0M3.124 7.5A8.969 8.969 0 0 1 5.292 3m13.416 0a8.969 8.969 0 0 1 2.168 4.5" />
-                                </svg>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-lg-7">
-                    <div class="contact_form wow fadeInRight">
-                        <h2>Get In Touch 👋</h2>
-                        <?php if (isset($_GET['status']) && $_GET['status'] == 'success'): ?>
-                        <div class="alert alert-success alert-dismissible fade show" role="alert">
-                            <strong>Success!</strong> Your message has been sent successfully. We will get back to you
-                            soon.
-                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                        </div>
-                        <?php endif; ?>
-                        <form action="submit_contact.php" method="POST">
-                            <div class="row">
-                                <div class="col-md-6">
-                                    <div class="single_input">
-                                        <label>name</label>
-                                        <input type="text" name="name" placeholder="Jhon Deo" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single_input">
-                                        <label>email</label>
-                                        <input type="email" name="email" placeholder="example@Zenis.com" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single_input">
-                                        <label>phone</label>
-                                        <input type="text" name="phone" placeholder="+96512344854475">
-                                    </div>
-                                </div>
-                                <div class="col-md-6">
-                                    <div class="single_input">
-                                        <label>Subject</label>
-                                        <input type="text" name="subject" placeholder="Subject" required>
-                                    </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <div class="single_input">
-                                        <label>Message</label>
-                                        <textarea rows="7" name="message" placeholder="Message..." required></textarea>
-                                    </div>
-                                    <button type="submit" class="common_btn">send message <i
-                                            class="fas fa-long-arrow-right"></i></button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </div>
+
+
         <div class="contact_map mt_100 wow fadeInUp">
             <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3421.5733059244267!2d76.66847517539597!3d30.738667081645004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390fefc46bfc136d%3A0x14ff2164839312db!2sPalm%20Village%2C%20Sector%20126%2C%20Model%20Town%2C%20Sahibzada%20Ajit%20Singh%20Nagar%2C%20Punjab%20140301!5e0!3m2!1sen!2sin!4v1733850399999!5m2!1sen!2sin"

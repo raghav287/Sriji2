@@ -138,7 +138,6 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
         }
     </style>
     <!-- PayPal SDK -->
-    <script src="https://www.paypal.com/sdk/js?client-id=<?php echo PAYPAL_CLIENT_ID; ?>&currency=USD"></script>
 
 </head>
 
@@ -392,10 +391,6 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                                         Online Payment
                                     </label>
                                 </div>
-                                <div class="form-check" id="paypal_option" style="display:none;">
-                                    <div id="paypal-button-container"></div>
-                                </div>
-
                                 <button type="submit" class="common_btn">Place order <i
                                         class="fas fa-long-arrow-right"></i></button>
                             </div>
@@ -468,28 +463,13 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
         });
 
         function checkPaymentMethods() {
-            var countryName = $('#countryId').val(); // Name
-            
-            // Case-insensitive check for India
-            var isIndia = (countryName && countryName.toLowerCase() === 'india') || !countryName; 
-            
-            if (isIndia) {
-                // Show India Payment Methods
-                $('#online_payment_section').show();
-                $('#cod_payment_section').show();
-                $('#paypal_option').hide();
-                
-                // Ensure online/cod is selected if needed and available
-                if (!$('input[name="payment_method"]:checked').val()) {
-                     if($('#online').length > 0) $('#online').prop('checked', true);
-                     else if($('#cod').length > 0) $('#cod').prop('checked', true);
-                }
-            } else {
-                // Hide India Payment Methods
-                $('#online_payment_section').hide();
-                $('#cod_payment_section').hide();
-                $('#paypal_option').show();
-                // PayPal doesn't use a radio button, so we don't need to select one.
+            // Always show COD and Online; PayPal disabled
+            $('#online_payment_section').show();
+            $('#cod_payment_section').show();
+            // Ensure one is selected
+            if (!$('input[name="payment_method"]:checked').val()) {
+                if ($('#online').length > 0) $('#online').prop('checked', true);
+                else if ($('#cod').length > 0) $('#cod').prop('checked', true);
             }
         }
         
@@ -500,16 +480,6 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
             // Basic validation check
             if (!this.checkValidity()) {
                 this.reportValidity();
-                return;
-            }
-
-            // Check if PayPal is the active method
-            if ($('#paypal_option').is(':visible')) {
-                // Do nothing, PayPal button handles it?
-                // Actually, user might click "Place Order" button which is for standard flow.
-                // We should Hide the standard "Place Order" button when PayPal is active?
-                // Or let PayPal button be the only way.
-                alert("Please use the PayPal button to complete your order.");
                 return;
             }
 

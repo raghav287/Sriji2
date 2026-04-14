@@ -419,8 +419,10 @@ button {
 }
 
 .page_banner_overlay {
-    background: rgb(7 28 31 / 38%);
-    padding: 50px 0px 52px 0px;
+    aspect-ratio: 38 / 5;
+    min-height: 160px;
+  padding: 50px 0px 41px 0px;
+    background-color: #0000004f;
 }
 
 .page_banner_text h1 {

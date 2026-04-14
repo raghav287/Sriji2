@@ -176,6 +176,36 @@ if ($color_res && $color_res->num_rows > 0) {
         <style>
         /* ===== SVSS SHOP CUSTOM POPUP ===== */
 
+        /* Keep the banner background at a 38:5 ratio without stretching */
+        .page_banner {
+            background-size: cover !important;
+            background-position: center !important;
+            background-repeat: no-repeat !important;
+            aspect-ratio: 38 / 5;
+            min-height: 160px;
+        }
+
+        @media (max-width: 768px) {
+            .page_banner {
+                aspect-ratio: unset;
+                min-height: 200px;
+            }
+        }
+
+        /* Ensure banner background keeps its aspect ratio across breakpoints */
+        .page_banner {
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+
+        @media (max-width: 768px) {
+            .page_banner {
+                background-size: cover;
+                /* keep ratio while filling smaller screens */
+            }
+        }
+
         .svss-popup-overlay {
             position: fixed;
             inset: 0;
@@ -273,7 +303,7 @@ if ($color_res && $color_res->num_rows > 0) {
         <!--=========================
         PAGE BANNER START
     ==========================-->
-        <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+        <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
             <div class="page_banner_overlay">
                 <div class="container">
                     <div class="row">
@@ -359,7 +389,8 @@ if ($color_res && $color_res->num_rows > 0) {
                                             $suffix = $suffix ? '&' . $suffix : '';
                                         ?>
                                         <li><a href="shop.php?color=<?php echo urlencode(''); ?><?php echo $suffix; ?>"
-                                                class="<?php echo $color_filter === '' ? 'active' : ''; ?>">All Colours</a>
+                                                class="<?php echo $color_filter === '' ? 'active' : ''; ?>">All
+                                                Colours</a>
                                         </li>
                                         <?php foreach ($color_options as $c): ?>
                                         <li>
