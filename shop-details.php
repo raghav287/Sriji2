@@ -274,17 +274,17 @@ $related_products = $stmt_rel->get_result();
                                     <p class="variant_title">Size :</p>
                                     <ul class="details_variant_size">
                                         <?php
-                                            $first = true;
+                                            $is_first = true;
                                             foreach ($unique_sizes as $size):
-                                                // $active_class = $first ? 'active' : ''; // Removed auto-active to encourage selection, or keep key logic later
-                                                // Let's keep logic simple: user selects size.
-                                                $active_class = '';
+                                                $active_class = $is_first ? 'active' : '';
                                                 ?>
-                                        <li class="<?php echo $active_class; ?>"
-                                            data-size="<?php echo htmlspecialchars($size); ?>">
+                                        <li class="<?php echo $active_class; ?>" data-size="<?php echo htmlspecialchars($size); ?>">
                                             <?php echo htmlspecialchars($size); ?>
                                         </li>
-                                        <?php endforeach; ?>
+                                        <?php 
+                                            $is_first = false;
+                                            endforeach; 
+                                            ?>
                                     </ul>
                                 </div>
                                 <?php endif; ?>
@@ -652,8 +652,28 @@ $related_products = $stmt_rel->get_result();
             if (b.textContent.toLowerCase().includes('add to cart')) cartBtn = b;
         });
 
-        let selectedSize = null;
+        let selectedSize = sizeItems.length > 0 ? sizeItems[0].getAttribute('data-size') : null;
         let selectedColor = null;
+
+        if (selectedSize) {
+            updatePrice();
+            // Trigger color filter based on pre-selected size
+            const relevantVariants = getVariantsBySize(selectedSize);
+            const availableColors = relevantVariants.map(v => v.color);
+
+            colorItems.forEach(colorLi => {
+                const colorVal = colorLi.getAttribute('data-color');
+                if (availableColors.includes(colorVal)) {
+                    colorLi.style.opacity = '1';
+                    colorLi.style.pointerEvents = 'auto';
+                    colorLi.style.border = '1px solid #ddd';
+                } else {
+                    colorLi.style.opacity = '0.3';
+                    colorLi.style.pointerEvents = 'none';
+                    colorLi.style.border = '1px dashed #ccc';
+                }
+            });
+        }
 
         function updatePrice() {
             let relevantVariants = productVariants;

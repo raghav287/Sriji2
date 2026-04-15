@@ -8497,8 +8497,21 @@ footer {
 
 .details_variant_size li:hover,
 .details_variant_size li.active {
-    background: var(--themeColorTwo);
-    color: var(--colorWhite);
+    background: var(--themeColorTwo) !important;
+    color: var(--colorWhite) !important;
+    border: 1px solid var(--themeColorTwo) !important;
+}
+
+.details_variant_size li {
+    cursor: pointer;
+    border: 1px solid #ddd !important;
+    background: transparent !important;
+    color: var(--colorBlack) !important;
+}
+
+.details_variant_color li.active {
+    border: 2px solid var(--themeColorTwo) !important;
+    transform: scale(1.1);
 }
 
 .details_qty_input {
