@@ -130,12 +130,12 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
     <!-- Select2 -->
     <link href="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/css/select2.min.css" rel="stylesheet" />
     <style>
-        .select2-container .select2-selection--single {
-            height: 50px;
-            border: 1px solid #ddd;
-            display: flex;
-            align-items: center;
-        }
+    .select2-container .select2-selection--single {
+        height: 50px;
+        border: 1px solid #ddd;
+        display: flex;
+        align-items: center;
+    }
     </style>
     <!-- PayPal SDK -->
 
@@ -154,7 +154,7 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
     <!--=========================
         PAGE BANNER START
     ==========================-->
-    <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+    <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
         <div class="page_banner_overlay">
             <div class="container">
                 <div class="row">
@@ -184,47 +184,47 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                         <div class="checkout_header">
                             <h3>Shipping Information</h3>
                             <?php if ($c_user && isset($_SESSION['user_name'])): ?>
-                                <p>Logged in as: <b><?php echo htmlspecialchars($_SESSION['user_name']); ?></b></p>
+                            <p>Logged in as: <b><?php echo htmlspecialchars($_SESSION['user_name']); ?></b></p>
                             <?php else: ?>
-                                <p>Already have an account? <a href="sign-in.php">Login here</a></p>
+                            <p>Already have an account? <a href="sign-in.php">Login here</a></p>
                             <?php endif; ?>
                         </div>
 
                         <div class="checkout_address_area">
                             <!-- Saved Addresses (Radio) -->
                             <?php if (!empty($saved_addresses)): ?>
-                                <div class="row mb-4">
-                                    <h6>Select a saved address:</h6>
-                                    <?php foreach ($saved_addresses as $index => $addr): ?>
-                                        <div class="col-md-6 mb-3">
-                                            <div class="checkout_single_address border p-3 rounded">
-                                                <div class="form-check">
-                                                    <input class="form-check-input" type="radio" name="selected_address"
-                                                        id="addr_<?php echo $addr['id']; ?>" value="<?php echo $addr['id']; ?>"
-                                                        <?php echo $index === 0 ? 'checked' : ''; ?>
-                                                        onchange="toggleNewAddress(false)">
-                                                    <label class="form-check-label" for="addr_<?php echo $addr['id']; ?>">
-                                                        <strong><?php echo htmlspecialchars($addr['name'] ?? 'Address #' . ($index + 1)); ?></strong><br>
-                                                        <?php echo htmlspecialchars($addr['address']); ?><br>
-                                                        <?php echo htmlspecialchars($addr['city'] . ', ' . $addr['state'] . ', ' . $addr['country']); ?><br>
-                                                        Phone: <?php echo htmlspecialchars($addr['phone']); ?>
-                                                    </label>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    <?php endforeach; ?>
-                                    <div class="col-md-12">
+                            <div class="row mb-4">
+                                <h6>Select a saved address:</h6>
+                                <?php foreach ($saved_addresses as $index => $addr): ?>
+                                <div class="col-md-6 mb-3">
+                                    <div class="checkout_single_address border p-3 rounded">
                                         <div class="form-check">
                                             <input class="form-check-input" type="radio" name="selected_address"
-                                                id="addr_new" value="new" onchange="toggleNewAddress(true)">
-                                            <label class="form-check-label" for="addr_new">
-                                                <b>Ship to a new address</b>
+                                                id="addr_<?php echo $addr['id']; ?>" value="<?php echo $addr['id']; ?>"
+                                                <?php echo $index === 0 ? 'checked' : ''; ?>
+                                                onchange="toggleNewAddress(false)">
+                                            <label class="form-check-label" for="addr_<?php echo $addr['id']; ?>">
+                                                <strong><?php echo htmlspecialchars($addr['name'] ?? 'Address #' . ($index + 1)); ?></strong><br>
+                                                <?php echo htmlspecialchars($addr['address']); ?><br>
+                                                <?php echo htmlspecialchars($addr['city'] . ', ' . $addr['state'] . ', ' . $addr['country']); ?><br>
+                                                Phone: <?php echo htmlspecialchars($addr['phone']); ?>
                                             </label>
                                         </div>
                                     </div>
                                 </div>
+                                <?php endforeach; ?>
+                                <div class="col-md-12">
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="selected_address"
+                                            id="addr_new" value="new" onchange="toggleNewAddress(true)">
+                                        <label class="form-check-label" for="addr_new">
+                                            <b>Ship to a new address</b>
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                             <?php else: ?>
-                                <input type="hidden" name="selected_address" value="new">
+                            <input type="hidden" name="selected_address" value="new">
                             <?php endif; ?>
 
                             <!-- New Address Form -->
@@ -257,12 +257,12 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                                             <select class="select_2 w-100" name="country" id="countryId" required>
                                                 <option value="">Select Country</option>
                                                 <?php foreach ($active_countries as $country): ?>
-                                                    <option value="<?php echo htmlspecialchars($country['name']); ?>" 
-                                                            data-id="<?php echo $country['id']; ?>"
-                                                            data-code="<?php echo $country['code']; ?>"
-                                                            <?php echo ($current_country_id == $country['id'] || $current_country_code == $country['code'] || ($country['name'] == 'India' && $current_country_code == 'IN')) ? 'selected' : ''; ?>>
-                                                        <?php echo htmlspecialchars($country['name']); ?>
-                                                    </option>
+                                                <option value="<?php echo htmlspecialchars($country['name']); ?>"
+                                                    data-id="<?php echo $country['id']; ?>"
+                                                    data-code="<?php echo $country['code']; ?>"
+                                                    <?php echo ($current_country_id == $country['id'] || $current_country_code == $country['code'] || ($country['name'] == 'India' && $current_country_code == 'IN')) ? 'selected' : ''; ?>>
+                                                    <?php echo htmlspecialchars($country['name']); ?>
+                                                </option>
                                                 <?php endforeach; ?>
                                             </select>
                                         </div>
@@ -316,22 +316,22 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                             <h3>Billing summary</h3>
                             <ul>
                                 <?php foreach ($cart_items as $item): ?>
-                                    <li>
-                                        <a class="img" href="#">
-                                            <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="product"
-                                                class="img-fluid w-100">
-                                        </a>
-                                        <div class="text">
-                                            <a class="title" href="#"><?php echo htmlspecialchars($item['name']); ?></a>
-                                            <p>₹<?php echo number_format($item['final_price'], 2); ?> ×
-                                                <?php echo $item['quantity']; ?>
-                                            </p>
-                                            <?php if ($item['size'] || $item['color']): ?>
-                                                <p><?php echo $item['color'] . ($item['color'] && $item['size'] ? ', ' : '') . $item['size']; ?>
-                                                </p>
-                                            <?php endif; ?>
-                                        </div>
-                                    </li>
+                                <li>
+                                    <a class="img" href="#">
+                                        <img src="<?php echo htmlspecialchars($item['image']); ?>" alt="product"
+                                            class="img-fluid w-100">
+                                    </a>
+                                    <div class="text">
+                                        <a class="title" href="#"><?php echo htmlspecialchars($item['name']); ?></a>
+                                        <p>₹<?php echo number_format($item['final_price'], 2); ?> ×
+                                            <?php echo $item['quantity']; ?>
+                                        </p>
+                                        <?php if ($item['size'] || $item['color']): ?>
+                                        <p><?php echo $item['color'] . ($item['color'] && $item['size'] ? ', ' : '') . $item['size']; ?>
+                                        </p>
+                                        <?php endif; ?>
+                                    </div>
+                                </li>
                                 <?php endforeach; ?>
                             </ul>
 
@@ -351,8 +351,7 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                                 <span>₹<?php echo number_format($total_with_shipping + ($cod_active ? $cod_charge : 0), 2); ?></span>
                             </h4>
 
-                            <button type="button" class="btn btn-link p-0 mt-2"
-                                id="trigger_gift_popup"
+                            <button type="button" class="btn btn-link p-0 mt-2" id="trigger_gift_popup"
                                 style="font-size:13px; color:#b35a00; text-decoration:underline;">
                                 Thinking to cancel? Tap here first.
                             </button>
@@ -366,23 +365,25 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                             <div class="checkout_payment">
                                 <h3>payment method</h3>
                                 <p style="font-size: 13px; color:#666; margin-top:-6px; margin-bottom:6px;">
-                                    Pay online to get an extra 5% off (works great on combo offers). Limit one discounted prepaid order per phone number.
+                                    Pay online to get an extra 5% off (works great on combo offers). Limit one
+                                    discounted prepaid order per phone number.
                                 </p>
                                 <div style="font-size:12px; color:#0b7a2a; font-weight:600; margin-bottom:8px;">
-                                    🎁 Surprise Gift Included on prepaid orders — it will be added to your package automatically.
+                                    🎁 Surprise Gift Included on prepaid orders — it will be added to your package
+                                    automatically.
                                 </div>
                                 <button type="button" class="btn btn-link p-0" id="open_prepaid_offer"
                                     style="font-size:12px;">View prepaid offer details</button>
                                 <?php if ($cod_active): ?>
-                                    <div class="form-check" id="cod_payment_section">
-                                        <input class="form-check-input payment-radio" type="radio" name="payment_method"
-                                            id="cod" value="COD" checked>
-                                        <label class="form-check-label" for="cod">
-                                            Cash on Delivery
-                                            <?php if ($cod_charge > 0)
+                                <div class="form-check" id="cod_payment_section">
+                                    <input class="form-check-input payment-radio" type="radio" name="payment_method"
+                                        id="cod" value="COD" checked>
+                                    <label class="form-check-label" for="cod">
+                                        Cash on Delivery
+                                        <?php if ($cod_charge > 0)
                                                 echo "(+₹" . number_format($cod_charge, 2) . ")"; ?>
-                                        </label>
-                                    </div>
+                                    </label>
+                                </div>
                                 <?php endif; ?>
                                 <div class="form-check" id="online_payment_section">
                                     <input class="form-check-input payment-radio" type="radio" name="payment_method"
@@ -415,350 +416,364 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
     <script src="assets/js/custom.js"></script>
 
     <script>
-        // ... (Existing scripts can stay or be part of this)
-        // We will move the submit logic to inline here or custom.js, 
-        // but for now let's keep it consistent.
-        
-        // Country Change Handler for Dynamic Pricing
-        $('#countryId').on('change', function() {
-            var selectedOption = $(this).find('option:selected');
-            var countryId = selectedOption.data('id');
-            var countryCode = selectedOption.data('code'); // Assuming code column exists
-            var countryName = $(this).val();
+    // ... (Existing scripts can stay or be part of this)
+    // We will move the submit logic to inline here or custom.js, 
+    // but for now let's keep it consistent.
 
-            if(countryId) {
-                // Determine if we need to reload (Multi-currency support)
-                // We'll update the session via generic helper
-                $.post('includes/price_helper.php', { 
-                    action: 'change_country', 
-                    country_id: countryId 
-                }, function(resp) {
-                    // Reload to apply new prices
-                    window.location.reload(); 
-                });
-            }
-        });
+    // Country Change Handler for Dynamic Pricing
+    $('#countryId').on('change', function() {
+        var selectedOption = $(this).find('option:selected');
+        var countryId = selectedOption.data('id');
+        var countryCode = selectedOption.data('code'); // Assuming code column exists
+        var countryName = $(this).val();
 
-        // Determine initial visibility
-        $(document).ready(function() {
-            checkPaymentMethods();
-            
-            // Initialize Address Form State to remove required attributes if hidden
-            var selectedRadio = $('input[name="selected_address"]:checked');
-            var selectedVal = selectedRadio.val();
-            
-            if (!selectedVal) {
-                // Check for hidden input if no radio (e.g. no saved addresses)
-                var hiddenInput = $('input[name="selected_address"][type="hidden"]');
-                if (hiddenInput.length > 0) {
-                    selectedVal = hiddenInput.val();
-                }
-            }
-            
-            if (selectedVal === 'new') {
-                toggleNewAddress(true);
-            } else if (selectedVal) {
-                toggleNewAddress(false);
-            }
-        });
+        if (countryId) {
+            // Determine if we need to reload (Multi-currency support)
+            // We'll update the session via generic helper
+            $.post('includes/price_helper.php', {
+                action: 'change_country',
+                country_id: countryId
+            }, function(resp) {
+                // Reload to apply new prices
+                window.location.reload();
+            });
+        }
+    });
 
-        function checkPaymentMethods() {
-            // Always show COD and Online; PayPal disabled
-            $('#online_payment_section').show();
-            $('#cod_payment_section').show();
-            // Ensure one is selected
-            if (!$('input[name="payment_method"]:checked').val()) {
-                if ($('#online').length > 0) $('#online').prop('checked', true);
-                else if ($('#cod').length > 0) $('#cod').prop('checked', true);
+    // Determine initial visibility
+    $(document).ready(function() {
+        checkPaymentMethods();
+
+        // Initialize Address Form State to remove required attributes if hidden
+        var selectedRadio = $('input[name="selected_address"]:checked');
+        var selectedVal = selectedRadio.val();
+
+        if (!selectedVal) {
+            // Check for hidden input if no radio (e.g. no saved addresses)
+            var hiddenInput = $('input[name="selected_address"][type="hidden"]');
+            if (hiddenInput.length > 0) {
+                selectedVal = hiddenInput.val();
             }
         }
-        
 
-        $('#checkoutForm').on('submit', function (e) {
-            e.preventDefault();
+        if (selectedVal === 'new') {
+            toggleNewAddress(true);
+        } else if (selectedVal) {
+            toggleNewAddress(false);
+        }
+    });
 
-            // Basic validation check
-            if (!this.checkValidity()) {
-                this.reportValidity();
-                return;
-            }
+    function checkPaymentMethods() {
+        // Always show COD and Online; PayPal disabled
+        $('#online_payment_section').show();
+        $('#cod_payment_section').show();
+        // Ensure one is selected
+        if (!$('input[name="payment_method"]:checked').val()) {
+            if ($('#online').length > 0) $('#online').prop('checked', true);
+            else if ($('#cod').length > 0) $('#cod').prop('checked', true);
+        }
+    }
 
-            const paymentMethod = $('input[name="payment_method"]:checked').val();
 
-            if (paymentMethod === 'COD') {
-                if (window.codModal) {
-                    window.codModal.show();
-                } else {
-                    processOrderSubmission(this);
-                }
+    $('#checkoutForm').on('submit', function(e) {
+        e.preventDefault();
+
+        // Basic validation check
+        if (!this.checkValidity()) {
+            this.reportValidity();
+            return;
+        }
+
+        const paymentMethod = $('input[name="payment_method"]:checked').val();
+
+        if (paymentMethod === 'COD') {
+            if (window.codModal) {
+                window.codModal.show();
             } else {
                 processOrderSubmission(this);
             }
-        });
+        } else {
+            processOrderSubmission(this);
+        }
+    });
 
-        function processOrderSubmission(form) {
-            const formData = new FormData(form);
-            const submitBtn = $(form).find('button[type="submit"]');
-            submitBtn.prop('disabled', true).text('Processing...');
+    function processOrderSubmission(form) {
+        const formData = new FormData(form);
+        const submitBtn = $(form).find('button[type="submit"]');
+        submitBtn.prop('disabled', true).text('Processing...');
 
-            fetch('submit_order.php', {
+        fetch('submit_order.php', {
                 method: 'POST',
                 body: formData
             })
-                .then(response => response.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = data.redirect_url ? data.redirect_url : 'payment-success.php';
-                    } else if (data.status === 'razorpay_init') {
-                        // Initialize Razorpay
-                        var options = {
-                            "key": "<?php echo RAZORPAY_KEY_ID; ?>", // Enter the Key ID generated from the Dashboard
-                            "amount": data.amount, // Amount is in currency subunits. Default currency is INR.
-                            "currency": "INR",
-                            "name": "Sriji Vastra Shingar Sewa",
-                            "description": "Order Payment",
-                            "image": "assets/images/logo/logo.png", // Ensure this path is correct relative to domain
-                            "order_id": data.razorpay_order_id,
-                            "handler": function (response) {
-                                // Verify Payment
-                                verifyPayment(response, data.sys_order_id);
-                            },
-                            "prefill": {
-                                "name": $('input[name="name"]').val(),
-                                "email": $('input[name="email"]').val(),
-                                "contact": $('input[name="phone"]').val()
-                            },
-                            "color": "#B48E43",
-                            "modal": {
-                                "ondismiss": function () {
-                                    if (window.payExitModal) {
-                                        window.payExitModal.show();
-                                    }
+            .then(response => response.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = data.redirect_url ? data.redirect_url : 'payment-success.php';
+                } else if (data.status === 'razorpay_init') {
+                    // Initialize Razorpay
+                    var options = {
+                        "key": "<?php echo RAZORPAY_KEY_ID; ?>", // Enter the Key ID generated from the Dashboard
+                        "amount": data.amount, // Amount is in currency subunits. Default currency is INR.
+                        "currency": "INR",
+                        "name": "Sriji Vastra Shingar Sewa",
+                        "description": "Order Payment",
+                        "image": "assets/images/logo/logo.png", // Ensure this path is correct relative to domain
+                        "order_id": data.razorpay_order_id,
+                        "handler": function(response) {
+                            // Verify Payment
+                            verifyPayment(response, data.sys_order_id);
+                        },
+                        "prefill": {
+                            "name": $('input[name="name"]').val(),
+                            "email": $('input[name="email"]').val(),
+                            "contact": $('input[name="phone"]').val()
+                        },
+                        "color": "#B48E43",
+                        "modal": {
+                            "ondismiss": function() {
+                                if (window.payExitModal) {
+                                    window.payExitModal.show();
                                 }
                             }
-                        };
-                        window.rzp1 = new Razorpay(options); // Make global
-                        window.rzp1.on('payment.failed', function (response) {
-                            // Log failure
-                            const fd = new FormData();
-                            fd.append('order_id', data.sys_order_id);
-                            fd.append('payment_id', response.error.metadata.payment_id);
-                            fd.append('error_description', response.error.description);
-                            fd.append('error_code', response.error.code);
+                        }
+                    };
+                    window.rzp1 = new Razorpay(options); // Make global
+                    window.rzp1.on('payment.failed', function(response) {
+                        // Log failure
+                        const fd = new FormData();
+                        fd.append('order_id', data.sys_order_id);
+                        fd.append('payment_id', response.error.metadata.payment_id);
+                        fd.append('error_description', response.error.description);
+                        fd.append('error_code', response.error.code);
 
-                            navigator.sendBeacon('log_payment_failure.php', fd);
-                            window.location.href = 'payment-failed.php?error=' + encodeURIComponent(response.error.description);
-                        });
-                        window.rzp1.open();
-                    } else {
-                        alert(data.message || 'Error processing order');
-                        submitBtn.prop('disabled', false).text('Place order');
-                    }
-                })
-                .catch(error => {
-                    console.error('Error:', error);
-                    alert('Connection error');
-                    submitBtn.prop('disabled', false).text('Place order');
-                });
-        }
-
-        // Payment Exit Modal Handlers
-        $(document).ready(function () {
-            // Bootstrap 5 modal instances (no jQuery plugins)
-            const payExitEl = document.getElementById('paymentExitModal');
-            const codEl = document.getElementById('codConfirmationModal');
-            const prepaidOfferEl = document.getElementById('prepaidOfferModal');
-            window.payExitModal = payExitEl ? new bootstrap.Modal(payExitEl, { backdrop: 'static', keyboard: false }) : null;
-            window.codModal = codEl ? new bootstrap.Modal(codEl, { backdrop: 'static', keyboard: false }) : null;
-            window.prepaidOfferModal = prepaidOfferEl ? new bootstrap.Modal(prepaidOfferEl) : null;
-            let codCancelRequested = false;
-
-            // Always show prepaid offer on checkout load
-            if (window.prepaidOfferModal) {
-                setTimeout(() => window.prepaidOfferModal.show(), 300);
-            }
-
-            $('#btnContinuePayment').on('click', function () {
-                if (window.payExitModal) window.payExitModal.hide();
-                if (window.rzp1) {
+                        navigator.sendBeacon('log_payment_failure.php', fd);
+                        window.location.href = 'payment-failed.php?error=' + encodeURIComponent(response
+                            .error.description);
+                    });
                     window.rzp1.open();
+                } else {
+                    alert(data.message || 'Error processing order');
+                    submitBtn.prop('disabled', false).text('Place order');
                 }
-            });
-
-            $('#btnCancelPayment').on('click', function () {
-                if (window.payExitModal) window.payExitModal.hide();
-                const submitBtn = $('#checkoutForm').find('button[type="submit"]');
+            })
+            .catch(error => {
+                console.error('Error:', error);
+                alert('Connection error');
                 submitBtn.prop('disabled', false).text('Place order');
             });
+    }
 
-            $('#trigger_gift_popup').on('click', function (e) {
-                e.preventDefault();
-                if (window.payExitModal) window.payExitModal.show();
-            });
+    // Payment Exit Modal Handlers
+    $(document).ready(function() {
+        // Bootstrap 5 modal instances (no jQuery plugins)
+        const payExitEl = document.getElementById('paymentExitModal');
+        const codEl = document.getElementById('codConfirmationModal');
+        const prepaidOfferEl = document.getElementById('prepaidOfferModal');
+        window.payExitModal = payExitEl ? new bootstrap.Modal(payExitEl, {
+            backdrop: 'static',
+            keyboard: false
+        }) : null;
+        window.codModal = codEl ? new bootstrap.Modal(codEl, {
+            backdrop: 'static',
+            keyboard: false
+        }) : null;
+        window.prepaidOfferModal = prepaidOfferEl ? new bootstrap.Modal(prepaidOfferEl) : null;
+        let codCancelRequested = false;
 
-            $('#open_prepaid_offer').on('click', function (e) {
-                e.preventDefault();
-                if (window.prepaidOfferModal) window.prepaidOfferModal.show();
-            });
+        // Always show prepaid offer on checkout load
+        if (window.prepaidOfferModal) {
+            setTimeout(() => window.prepaidOfferModal.show(), 300);
+        }
 
-            $('#choosePrepaidBtn').on('click', function () {
-                $('input[name="payment_method"][value="Online"]').prop('checked', true).trigger('change');
-                if (window.prepaidOfferModal) window.prepaidOfferModal.hide();
-            });
-
-            // Confirm COD Order Handler
-            $('#confirmCodOrder').on('click', function () {
-                if (window.codModal) window.codModal.hide();
-                const form = document.getElementById('checkoutForm');
-                processOrderSubmission(form);
-            });
-
-            $('#codCancelBtn').on('click', function () {
-                codCancelRequested = true;
-            });
-
-            if (codEl) {
-                codEl.addEventListener('hidden.bs.modal', function () {
-                    if (codCancelRequested && window.payExitModal) {
-                        codCancelRequested = false;
-                        window.payExitModal.show();
-                    }
-                });
+        $('#btnContinuePayment').on('click', function() {
+            if (window.payExitModal) window.payExitModal.hide();
+            if (window.rzp1) {
+                window.rzp1.open();
             }
-
-            // No dismissal gating; keep showing on every load
         });
 
-        function verifyPayment(razorpay_response, sys_order_id) {
-            fetch('verify_payment.php', {
+        $('#btnCancelPayment').on('click', function() {
+            if (window.payExitModal) window.payExitModal.hide();
+            const submitBtn = $('#checkoutForm').find('button[type="submit"]');
+            submitBtn.prop('disabled', false).text('Place order');
+        });
+
+        $('#trigger_gift_popup').on('click', function(e) {
+            e.preventDefault();
+            if (window.payExitModal) window.payExitModal.show();
+        });
+
+        $('#open_prepaid_offer').on('click', function(e) {
+            e.preventDefault();
+            if (window.prepaidOfferModal) window.prepaidOfferModal.show();
+        });
+
+        $('#choosePrepaidBtn').on('click', function() {
+            $('input[name="payment_method"][value="Online"]').prop('checked', true).trigger('change');
+            if (window.prepaidOfferModal) window.prepaidOfferModal.hide();
+        });
+
+        // Confirm COD Order Handler
+        $('#confirmCodOrder').on('click', function() {
+            if (window.codModal) window.codModal.hide();
+            const form = document.getElementById('checkoutForm');
+            processOrderSubmission(form);
+        });
+
+        $('#codCancelBtn').on('click', function() {
+            codCancelRequested = true;
+        });
+
+        if (codEl) {
+            codEl.addEventListener('hidden.bs.modal', function() {
+                if (codCancelRequested && window.payExitModal) {
+                    codCancelRequested = false;
+                    window.payExitModal.show();
+                }
+            });
+        }
+
+        // No dismissal gating; keep showing on every load
+    });
+
+    function verifyPayment(razorpay_response, sys_order_id) {
+        fetch('verify_payment.php', {
                 method: 'POST',
-                headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+                headers: {
+                    'Content-Type': 'application/x-www-form-urlencoded'
+                },
                 body: `razorpay_payment_id=${razorpay_response.razorpay_payment_id}&razorpay_order_id=${razorpay_response.razorpay_order_id}&razorpay_signature=${razorpay_response.razorpay_signature}&order_id=${sys_order_id}`
             })
-                .then(res => res.json())
-                .then(data => {
-                    if (data.status === 'success') {
-                        window.location.href = 'payment-success.php?order_number=' + (data.order_number || '');
-                    } else {
-                        window.location.href = 'payment-failed.php?error=' + encodeURIComponent(data.message);
-                    }
-                })
-                .catch(err => {
-                    alert('Error verifying payment');
-                });
-        }
-    </script>
-
-    <script>
-        // Update Total based on Payment Method
-        $(document).ready(function () {
-            function updateCheckoutTotal() {
-                var paymentMethod = $('input[name="payment_method"]:checked').val();
-                var baseTotal = parseFloat($('#base_total').val());
-                var codCharge = parseFloat($('#cod_charge_val').val());
-                var prepaidDiscount = parseFloat($('#prepaid_discount_val').val());
-                var finalTotal = baseTotal;
-
-                if (paymentMethod === 'COD') {
-                    finalTotal += codCharge;
-                    $('#cod_fee_display').show();
-                    $('#prepaid_discount_row').hide();
+            .then(res => res.json())
+            .then(data => {
+                if (data.status === 'success') {
+                    window.location.href = 'payment-success.php?order_number=' + (data.order_number || '');
                 } else {
-                    $('#cod_fee_display').hide();
-                    if (!isNaN(prepaidDiscount) && prepaidDiscount > 0) {
-                        finalTotal -= prepaidDiscount;
-                        if (finalTotal < 0) finalTotal = 0;
-                        $('#prepaid_discount_row').show();
-                    }
+                    window.location.href = 'payment-failed.php?error=' + encodeURIComponent(data.message);
                 }
-                
-                // Hide total display if PayPal (or keep it?)
-                // PayPal takes care of its own display usually, but good to keep.
-
-                $('#total_display_area span').text('₹' + finalTotal.toFixed(2));
-            }
-
-            $('.payment-radio').on('change', updateCheckoutTotal);
-
-            // Init check
-            updateCheckoutTotal();
-        });
+            })
+            .catch(err => {
+                alert('Error verifying payment');
+            });
+    }
     </script>
+
     <script>
-        // Toggle New Address Form
-        function toggleNewAddress(show) {
-            const form = document.getElementById('new_address_form');
-            const inputs = form.querySelectorAll('input, select, textarea');
-            if (show) {
-                form.style.display = 'block';
-                inputs.forEach(i => i.required = true);
+    // Update Total based on Payment Method
+    $(document).ready(function() {
+        function updateCheckoutTotal() {
+            var paymentMethod = $('input[name="payment_method"]:checked').val();
+            var baseTotal = parseFloat($('#base_total').val());
+            var codCharge = parseFloat($('#cod_charge_val').val());
+            var prepaidDiscount = parseFloat($('#prepaid_discount_val').val());
+            var finalTotal = baseTotal;
+
+            if (paymentMethod === 'COD') {
+                finalTotal += codCharge;
+                $('#cod_fee_display').show();
+                $('#prepaid_discount_row').hide();
             } else {
-                form.style.display = 'none';
-                inputs.forEach(i => i.required = false);
+                $('#cod_fee_display').hide();
+                if (!isNaN(prepaidDiscount) && prepaidDiscount > 0) {
+                    finalTotal -= prepaidDiscount;
+                    if (finalTotal < 0) finalTotal = 0;
+                    $('#prepaid_discount_row').show();
+                }
             }
+
+            // Hide total display if PayPal (or keep it?)
+            // PayPal takes care of its own display usually, but good to keep.
+
+            $('#total_display_area span').text('₹' + finalTotal.toFixed(2));
         }
 
-        // --- Location API Integration ---
-        $(document).ready(function () {
-            $('.select_2').select2();
+        $('.payment-radio').on('change', updateCheckoutTotal);
 
-            // Fetch Countries - REMOVED to use server-side active countries list
-            /* 
-            $.get("https://countriesnow.space/api/v0.1/countries", function (data) {
-                ...
+        // Init check
+        updateCheckoutTotal();
+    });
+    </script>
+    <script>
+    // Toggle New Address Form
+    function toggleNewAddress(show) {
+        const form = document.getElementById('new_address_form');
+        const inputs = form.querySelectorAll('input, select, textarea');
+        if (show) {
+            form.style.display = 'block';
+            inputs.forEach(i => i.required = true);
+        } else {
+            form.style.display = 'none';
+            inputs.forEach(i => i.required = false);
+        }
+    }
+
+    // --- Location API Integration ---
+    $(document).ready(function() {
+        $('.select_2').select2();
+
+        // Fetch Countries - REMOVED to use server-side active countries list
+        /* 
+        $.get("https://countriesnow.space/api/v0.1/countries", function (data) {
+            ...
+        });
+        */
+
+
+        // Fetch States Logic
+        function fetchStates(country) {
+            if (!country) return;
+            $('#stateId').html('<option value="">Loading...</option>');
+            $.post("https://countriesnow.space/api/v0.1/countries/states", {
+                country: country
+            }, function(data) {
+                if (!data.error) {
+                    let options = '<option value="">Select State</option>';
+                    data.data.states.forEach(s => {
+                        options += `<option value="${s.name}">${s.name}</option>`;
+                    });
+                    $('#stateId').html(options);
+                } else {
+                    $('#stateId').html('<option value="">No states found</option>');
+                }
             });
-            */
+        }
+
+        // Fetch States on Country Change
+        $('#countryId').on('change', function() {
+            const country = $(this).val();
+            fetchStates(country);
+        });
+
+        // Fetch States on Init (if country selected)
+        const initialCountry = $('#countryId').val();
+        if (initialCountry) {
+            fetchStates(initialCountry);
+        }
 
 
-            // Fetch States Logic
-            function fetchStates(country) {
-                if(!country) return;
-                $('#stateId').html('<option value="">Loading...</option>');
-                $.post("https://countriesnow.space/api/v0.1/countries/states", { country: country }, function (data) {
-                    if (!data.error) {
-                        let options = '<option value="">Select State</option>';
-                        data.data.states.forEach(s => {
-                            options += `<option value="${s.name}">${s.name}</option>`;
-                        });
-                        $('#stateId').html(options);
-                    } else {
-                        $('#stateId').html('<option value="">No states found</option>');
-                    }
-                });
-            }
+        // Fetch Cities on State Change
+        $('#stateId').on('change', function() {
+            const country = $('#countryId').val();
+            const state = $(this).val();
+            $('#cityId').html('<option value="">Loading...</option>');
 
-            // Fetch States on Country Change
-            $('#countryId').on('change', function () {
-                const country = $(this).val();
-                fetchStates(country);
-            });
-
-            // Fetch States on Init (if country selected)
-            const initialCountry = $('#countryId').val();
-            if(initialCountry) {
-                fetchStates(initialCountry);
-            }
-
-
-            // Fetch Cities on State Change
-            $('#stateId').on('change', function () {
-                const country = $('#countryId').val();
-                const state = $(this).val();
-                $('#cityId').html('<option value="">Loading...</option>');
-
-                $.post("https://countriesnow.space/api/v0.1/countries/state/cities", { country: country, state: state }, function (data) {
-                    if (!data.error) {
-                        let options = '<option value="">Select City</option>';
-                        data.data.forEach(c => {
-                            options += `<option value="${c}">${c}</option>`;
-                        });
-                        $('#cityId').html(options);
-                    } else {
-                        $('#cityId').html('<option value="">No cities found</option>');
-                    }
-                });
+            $.post("https://countriesnow.space/api/v0.1/countries/state/cities", {
+                country: country,
+                state: state
+            }, function(data) {
+                if (!data.error) {
+                    let options = '<option value="">Select City</option>';
+                    data.data.forEach(c => {
+                        options += `<option value="${c}">${c}</option>`;
+                    });
+                    $('#cityId').html(options);
+                } else {
+                    $('#cityId').html('<option value="">No cities found</option>');
+                }
             });
         });
+    });
     </script>
     <!-- Payment Exit Modal -->
     <div class="modal fade" id="paymentExitModal" tabindex="-1" aria-labelledby="paymentExitModalLabel"
@@ -766,15 +781,20 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
         <div class="modal-dialog modal-dialog-centered">
             <div class="modal-content">
                 <div class="modal-header border-0">
-                    <h5 class="modal-title" id="paymentExitModalLabel">Wait! Don’t miss out on a surprise gift with your order.</h5>
+                    <h5 class="modal-title" id="paymentExitModalLabel">Wait! Don’t miss out on a surprise gift with your
+                        order.</h5>
                     <!-- No close button to force choice -->
                 </div>
                 <div class="modal-body text-center">
                     <img src="assets/images/payment_success_img2.png" alt="wait" class="img-fluid mb-3"
                         style="max-height: 150px;">
-                    <p class="mb-3">Complete your payment now to unlock an extra 5% prepaid discount on combos <strong>and we’ll add a surprise gift to your package.</strong></p>
-                    <p class="text-muted small mb-1">The gift is automatically included with your prepaid order—no code needed.</p>
-                    <p class="text-muted small">You’ll see “Surprise Gift Included” on the confirmation screen and email after payment.</p>
+                    <p class="mb-3">Complete your payment now to unlock an extra 5% prepaid discount on combos
+                        <strong>and we’ll add a surprise gift to your package.</strong>
+                    </p>
+                    <p class="text-muted small mb-1">The gift is automatically included with your prepaid order—no code
+                        needed.</p>
+                    <p class="text-muted small">You’ll see “Surprise Gift Included” on the confirmation screen and email
+                        after payment.</p>
                 </div>
                 <div class="modal-footer justify-content-center border-0 pb-4">
                     <button type="button" class="btn btn-secondary" id="btnCancelPayment">Cancel Order</button>
@@ -823,7 +843,8 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
                     <p>Are you sure you want to place this order using <strong>Cash on Delivery</strong>?</p>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" id="codCancelBtn">Cancel</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        id="codCancelBtn">Cancel</button>
                     <button type="button" class="btn btn-primary common_btn" id="confirmCodOrder">Yes, Place
                         Order</button>
                 </div>
@@ -833,74 +854,83 @@ $current_country_id = $_SESSION['selected_country_id'] ?? null;
 
     <!-- PayPal Button Render Logic -->
     <script>
-        paypal.Buttons({
-            createOrder: function(data, actions) {
-                var form = document.getElementById('checkoutForm');
-                if (!form.checkValidity()) {
-                    form.reportValidity();
-                    return Promise.reject("Form invalid");
+    paypal.Buttons({
+        createOrder: function(data, actions) {
+            var form = document.getElementById('checkoutForm');
+            if (!form.checkValidity()) {
+                form.reportValidity();
+                return Promise.reject("Form invalid");
+            }
+
+            const formData = new FormData(form);
+            formData.append('payment_method', 'PayPal');
+
+            return fetch('submit_order.php', {
+                method: 'POST',
+                body: formData
+            }).then(function(res) {
+                return res.json();
+            }).then(function(orderData) {
+                if (orderData.status === 'paypal_init') {
+                    return actions.order.create({
+                        purchase_units: [{
+                            amount: {
+                                value: orderData.amount_usd // Amount in USD
+                            },
+                            description: "Order " + orderData.order_number
+                        }],
+                        application_context: {
+                            shipping_preference: 'NO_SHIPPING'
+                        }
+                    });
+                } else {
+                    throw new Error(orderData.message);
                 }
-                
-                const formData = new FormData(form);
-                formData.append('payment_method', 'PayPal'); 
-                
-                return fetch('submit_order.php', {
-                    method: 'POST',
-                    body: formData
-                }).then(function(res) {
-                    return res.json();
-                }).then(function(orderData) {
-                    if(orderData.status === 'paypal_init') {
-                        return actions.order.create({
-                            purchase_units: [{
-                                amount: {
-                                    value: orderData.amount_usd // Amount in USD
-                                },
-                                description: "Order " + orderData.order_number
-                            }],
-                             application_context: {
-                                shipping_preference: 'NO_SHIPPING'
-                            }
-                        });
-                    } else {
-                         throw new Error(orderData.message);
-                    }
-                });
-            },
-            onApprove: function(data, actions) {
-                return actions.order.capture().then(function(details) {
-                    // Payment Successful
-                    // console.log('Capture result', details); 
-                    return fetch('verify_paypal.php', {
+            });
+        },
+        onApprove: function(data, actions) {
+            return actions.order.capture().then(function(details) {
+                // Payment Successful
+                // console.log('Capture result', details); 
+                return fetch('verify_paypal.php', {
                         method: 'POST',
-                        headers: { 'Content-Type': 'application/json' },
+                        headers: {
+                            'Content-Type': 'application/json'
+                        },
                         body: JSON.stringify({
                             paypal_order_id: data.orderID,
                             details: details
                         })
                     }).then(res => {
-                        if (!res.ok) { throw new Error('Network response was not ok'); }
+                        if (!res.ok) {
+                            throw new Error('Network response was not ok');
+                        }
                         return res.json();
                     })
                     .then(resData => {
-                        if(resData.status === 'success') {
-                             window.location.href = 'payment-success.php?order_number=' + resData.order_number;
+                        if (resData.status === 'success') {
+                            window.location.href = 'payment-success.php?order_number=' + resData
+                                .order_number;
                         } else {
-                             window.location.href = 'payment-failed.php?error=' + encodeURIComponent(resData.message);
+                            window.location.href = 'payment-failed.php?error=' +
+                                encodeURIComponent(resData.message);
                         }
                     })
                     .catch(error => {
                         console.error('Error verifying payment:', error);
                         // Redirect to failed or contact support
-                        window.location.href = 'payment-failed.php?error=' + encodeURIComponent("Payment captured but verification failed. Please contact support.");
+                        window.location.href = 'payment-failed.php?error=' + encodeURIComponent(
+                            "Payment captured but verification failed. Please contact support."
+                        );
                     });
-                });
-            },
-            onError: function (err) {
-                console.error('PayPal Error', err);
-                alert('PayPal Error: ' + err);
-            }
-        }).render('#paypal-button-container');
+            });
+        },
+        onError: function(err) {
+            console.error('PayPal Error', err);
+            alert('PayPal Error: ' + err);
+        }
+    }).render('#paypal-button-container');
     </script>
 </body>
+
 </html>

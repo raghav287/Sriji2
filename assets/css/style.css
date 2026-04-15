@@ -422,7 +422,7 @@ button {
     aspect-ratio: 38 / 5;
     min-height: 160px;
   padding: 50px 0px 41px 0px;
-    background-color: #0000004f;
+    /* background-color: #0000004f; */
 }
 
 .page_banner_text h1 {

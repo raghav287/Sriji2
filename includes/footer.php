@@ -32,8 +32,8 @@ if (!isset($header_path_prefix)) {
                 <div class="footer_link">
                     <h3>Company</h3>
                     <ul>
-                        <li><a href="<?php echo $header_path_prefix; ?>about_us.php">About us</a></li>
-                        <li><a href="<?php echo $header_path_prefix; ?>contact.php">Contact Us</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>about-us">About us</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>contact">Contact Us</a></li>
                         <!--<li><a href="#">Affiliate</a></li>-->
                     </ul>
                 </div>
@@ -48,7 +48,7 @@ if (!isset($header_path_prefix)) {
                         <li><a href="<?php echo $header_path_prefix; ?>terms-and-conditions.php">Terms & Conditions</a>
                         </li>
                         <li><a href="<?php echo $header_path_prefix; ?>return-policy.php">Return Policy</a></li>
-                        <li><a href="#">FAQ's</a></li>
+                        <li><a href="faq.php">FAQ's</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>shipping-policy.php">Shipping Policy</a></li>
                     </ul>
                 </div>

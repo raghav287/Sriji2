@@ -495,8 +495,7 @@ if ($color_res && $color_res->num_rows > 0) {
                                     <div class="col-xxl-3 col-6 col-md-4 col-lg-6 col-xl-4 wow fadeInUp">
                                         <div class="product_item_2 product_item">
                                             <div class="product_img">
-                                                <a class="venobox product-lightbox" data-gall="shop-gallery"
-                                                    href="<?php echo $prod_img; ?>"
+                                                <a class="venobox product-lightbox" href="<?php echo $prod_img; ?>"
                                                     title="<?php echo htmlspecialchars($prod['name']); ?>">
                                                     <img src="<?php echo $prod_img; ?>"
                                                         alt="<?php echo htmlspecialchars($prod['name']); ?>"
@@ -590,7 +589,7 @@ if ($color_res && $color_res->num_rows > 0) {
                                             <div class="row">
                                                 <div class="col-md-4">
                                                     <div class="product_img">
-                                                        <a class="venobox product-lightbox" data-gall="shop-gallery"
+                                                        <a class="venobox product-lightbox"
                                                             href="<?php echo $prod_img; ?>"
                                                             title="<?php echo htmlspecialchars($prod['name']); ?>">
                                                             <img src="<?php echo $prod_img; ?>"

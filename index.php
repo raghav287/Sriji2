@@ -281,7 +281,7 @@ error_reporting(E_ALL);
                 <div class="col-xl-3 col-6 col-md-4 wow fadeInUp">
                     <div class="product_item_2 product_item">
                         <div class="product_img zoom-wrapper zoom-container">
-                            <a class="venobox product-lightbox" data-gall="home-gallery-<?php echo $cat_id; ?>"
+                            <a class="venobox product-lightbox"
                                 href="<?php echo $p_img; ?>" title="<?php echo htmlspecialchars($prod['name']); ?>">
                                 <img src="<?php echo $p_img; ?>" alt="<?php echo htmlspecialchars($prod['name']); ?>"
                                     class="img-fluid w-100 zoom-image">

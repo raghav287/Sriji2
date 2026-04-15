@@ -295,7 +295,7 @@
                             </ul>
                             <?php endif; ?>
                         </li>
-                        <li><a href="<?php echo $header_path_prefix; ?>about_us">About Us</a></li>
+                        <li><a href="<?php echo $header_path_prefix; ?>about-us">About Us</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>track-order">Track Order</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>contact">Contact</a></li>
                         <li><a href="<?php echo $header_path_prefix; ?>customer-suggestion">Customer
@@ -484,7 +484,7 @@
                         <ul class="main_mobile_menu">
                             <li><a href="<?php echo $header_path_prefix; ?>index.php">Home</a></li>
                             <li><a href="<?php echo $header_path_prefix; ?>shop.php">Shop</a></li>
-                            <li><a href="<?php echo $header_path_prefix; ?>about_us.php">About Us</a></li>
+                            <li><a href="<?php echo $header_path_prefix; ?>about-us">About Us</a></li>
                             <li><a href="<?php echo $header_path_prefix; ?>track-order.php">Track Order</a></li>
                             <li><a href="<?php echo $header_path_prefix; ?>contact.php">Contact Us</a></li>
                         </ul>

@@ -39,7 +39,7 @@
     <!--=========================
         PAGE BANNER START
     ==========================-->
-    <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+    <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
         <div class="page_banner_overlay">
             <div class="container">
                 <div class="row">
@@ -65,102 +65,105 @@
         SHIPPING POLICY START
     ==============================-->
     <section class="terms_condition mt_55 mb_100">
-    <div class="container">
-        <div class="row wow fadeInUp">
-            <div class="col-12">
-                <div class="privacy_policy_text">
+        <div class="container">
+            <div class="row wow fadeInUp">
+                <div class="col-12">
+                    <div class="privacy_policy_text">
 
-                    <h3>Self-Shipping for Returns / Exchanges</h3>
-                    <p>
-                        If your pincode is non-serviceable for reverse pickup, or if the product belongs to a category
-                        that does not support reverse pickup (such as furniture or jewellery), kindly courier the
-                        product to the address mentioned below.
-                    </p>
+                        <h3>Self-Shipping for Returns / Exchanges</h3>
+                        <p>
+                            If your pincode is non-serviceable for reverse pickup, or if the product belongs to a
+                            category
+                            that does not support reverse pickup (such as furniture or jewellery), kindly courier the
+                            product to the address mentioned below.
+                        </p>
 
-                    <h4>Return Address</h4>
-                    <p>
-                        Shikha Kainth<br>
-                        Flat No. 802, Tower B<br>
-                        Palm Village Apartment, Greater Mohali<br>
-                        Sector 126, Punjab – 140301
-                    </p>
+                        <h4>Return Address</h4>
+                        <p>
+                            Shikha Kainth<br>
+                            Flat No. 802, Tower B<br>
+                            Palm Village Apartment, Greater Mohali<br>
+                            Sector 126, Punjab – 140301
+                        </p>
 
-                    <h3>Shipping Policy</h3>
+                        <h3>Shipping Policy</h3>
 
-                    <h3>1. Order Dispatch Time</h3>
-                    <p>
-                        Orders are generally dispatched within <strong>24–48 hours</strong> after order confirmation,
-                        including Cash on Delivery (COD) orders.
-                    </p>
-                    <p>
-                        Dispatch may be delayed due to unforeseen circumstances such as weather conditions,
-                        public holidays, or festive seasons (e.g., Janmashtami, Diwali, Holi, etc.).
-                    </p>
+                        <h3>1. Order Dispatch Time</h3>
+                        <p>
+                            Orders are generally dispatched within <strong>24–48 hours</strong> after order
+                            confirmation,
+                            including Cash on Delivery (COD) orders.
+                        </p>
+                        <p>
+                            Dispatch may be delayed due to unforeseen circumstances such as weather conditions,
+                            public holidays, or festive seasons (e.g., Janmashtami, Diwali, Holi, etc.).
+                        </p>
 
-                    <h3>2. Delivery Timeline</h3>
-                    <ul>
-                        <li><strong>Metro Cities:</strong> 2–5 business days</li>
-                        <li><strong>Other Locations:</strong> 4–8 business days</li>
-                    </ul>
-                    <p>
-                        We ensure secure and careful packaging and assign the most suitable courier partner
-                        to ensure timely delivery.
-                    </p>
+                        <h3>2. Delivery Timeline</h3>
+                        <ul>
+                            <li><strong>Metro Cities:</strong> 2–5 business days</li>
+                            <li><strong>Other Locations:</strong> 4–8 business days</li>
+                        </ul>
+                        <p>
+                            We ensure secure and careful packaging and assign the most suitable courier partner
+                            to ensure timely delivery.
+                        </p>
 
-                    <h3>3. Shipping Charges</h3>
+                        <h3>3. Shipping Charges</h3>
 
-                    <h4>Prepaid Orders</h4>
-                    <ul>
-                        <li>₹50 shipping charge on orders up to ₹500</li>
-                        <li><strong>FREE SHIPPING</strong> on orders above ₹500</li>
-                    </ul>
+                        <h4>Prepaid Orders</h4>
+                        <ul>
+                            <li>₹50 shipping charge on orders up to ₹500</li>
+                            <li><strong>FREE SHIPPING</strong> on orders above ₹500</li>
+                        </ul>
 
-                    <h4>Cash on Delivery (COD) Orders</h4>
-                    <ul>
-                        <li>₹0 – ₹500 : ₹90</li>
-                        <li>₹501 & Above : ₹65</li>
-                    </ul>
+                        <h4>Cash on Delivery (COD) Orders</h4>
+                        <ul>
+                            <li>₹0 – ₹500 : ₹90</li>
+                            <li>₹501 & Above : ₹65</li>
+                        </ul>
 
-                    <h3>4. Important Notes</h3>
-                    <ul>
-                        <li>
-                            If an order is cancelled, lost, or undelivered, the complete order amount
-                            including shipping charges will be refunded.
-                        </li>
-                        <li>
-                            If part of an order is cancelled, shipping charges will not be refunded.
-                        </li>
-                        <li>
-                            If an order is delivered and later returned, original shipping charges are non-refundable.
-                        </li>
-                    </ul>
+                        <h3>4. Important Notes</h3>
+                        <ul>
+                            <li>
+                                If an order is cancelled, lost, or undelivered, the complete order amount
+                                including shipping charges will be refunded.
+                            </li>
+                            <li>
+                                If part of an order is cancelled, shipping charges will not be refunded.
+                            </li>
+                            <li>
+                                If an order is delivered and later returned, original shipping charges are
+                                non-refundable.
+                            </li>
+                        </ul>
 
-                    <h3>5. Address Accuracy</h3>
-                    <p>
-                        Customers are requested to ensure that the shipping address, phone number,
-                        and landmark are accurate at the time of placing the order to avoid delays
-                        or non-delivery.
-                    </p>
+                        <h3>5. Address Accuracy</h3>
+                        <p>
+                            Customers are requested to ensure that the shipping address, phone number,
+                            and landmark are accurate at the time of placing the order to avoid delays
+                            or non-delivery.
+                        </p>
 
-                    <h3>6. Damaged or Tampered Packages</h3>
-                    <p>
-                        Please do not accept the parcel if it appears tampered with or damaged.
-                    </p>
-                    <p>
-                        In case of any damage, contact us immediately using the details below.
-                    </p>
+                        <h3>6. Damaged or Tampered Packages</h3>
+                        <p>
+                            Please do not accept the parcel if it appears tampered with or damaged.
+                        </p>
+                        <p>
+                            In case of any damage, contact us immediately using the details below.
+                        </p>
 
-                    <h3>Customer Support</h3>
-                    <p>
-                        📱 <strong>WhatsApp:</strong> +91 9115936593<br>
-                        📧 <strong>Email:</strong> info@srijivastrashingarsewa.com
-                    </p>
+                        <h3>Customer Support</h3>
+                        <p>
+                            📱 <strong>WhatsApp:</strong> +91 9115936593<br>
+                            📧 <strong>Email:</strong> info@srijivastrashingarsewa.com
+                        </p>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!--=============================
         SHIPPING POLICY END

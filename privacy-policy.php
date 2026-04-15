@@ -39,7 +39,7 @@
     <!--=========================
         PAGE BANNER START
     ==========================-->
-    <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+    <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
         <div class="page_banner_overlay">
             <div class="container">
                 <div class="row">
@@ -65,101 +65,117 @@
         PRIVACY POLICY START
     ==============================-->
     <section class="terms_condition mt_55 mb_100">
-    <div class="container">
-        <div class="row wow fadeInUp">
-            <div class="col-12">
-                <div class="privacy_policy_text">
+        <div class="container">
+            <div class="row wow fadeInUp">
+                <div class="col-12">
+                    <div class="privacy_policy_text">
 
-                    <h3>Overview</h3>
-                    <p>
-                        This Privacy Policy describes how Sriji Vastra Shingar Sewa ("we", "our", "us") collects,
-                        uses, and safeguards your personal information when you visit our website or place an order.
-                        By accessing our site or purchasing from us, you agree to the practices outlined below.
-                    </p>
+                        <h3>Overview</h3>
+                        <p>
+                            This Privacy Policy describes how Sriji Vastra Shingar Sewa ("we", "our", "us") collects,
+                            uses, and safeguards your personal information when you visit our website or place an order.
+                            By accessing our site or purchasing from us, you agree to the practices outlined below.
+                        </p>
 
-                    <h3>1. Information We Collect</h3>
-                    <ul>
-                        <li><strong>Contact details:</strong> name, email address, phone number, billing/shipping address.</li>
-                        <li><strong>Order details:</strong> products purchased, transaction amount, order notes.</li>
-                        <li><strong>Payment information:</strong> processed securely via trusted payment gateways; we do not store full card or UPI details.</li>
-                        <li><strong>Usage data:</strong> device type, IP address, browser details, and interaction data collected through cookies and similar technologies.</li>
-                    </ul>
+                        <h3>1. Information We Collect</h3>
+                        <ul>
+                            <li><strong>Contact details:</strong> name, email address, phone number, billing/shipping
+                                address.</li>
+                            <li><strong>Order details:</strong> products purchased, transaction amount, order notes.
+                            </li>
+                            <li><strong>Payment information:</strong> processed securely via trusted payment gateways;
+                                we do not store full card or UPI details.</li>
+                            <li><strong>Usage data:</strong> device type, IP address, browser details, and interaction
+                                data collected through cookies and similar technologies.</li>
+                        </ul>
 
-                    <h3>2. How We Use Your Information</h3>
-                    <ul>
-                        <li>Process and deliver orders, including shipment updates and support.</li>
-                        <li>Communicate about your purchases, returns, exchanges, or service requests.</li>
-                        <li>Improve site performance, user experience, and product offerings.</li>
-                        <li>Comply with legal, tax, and accounting obligations.</li>
-                    </ul>
+                        <h3>2. How We Use Your Information</h3>
+                        <ul>
+                            <li>Process and deliver orders, including shipment updates and support.</li>
+                            <li>Communicate about your purchases, returns, exchanges, or service requests.</li>
+                            <li>Improve site performance, user experience, and product offerings.</li>
+                            <li>Comply with legal, tax, and accounting obligations.</li>
+                        </ul>
 
-                    <h3>3. Cookies &amp; Tracking</h3>
-                    <p>
-                        We use cookies and similar tools to enable core site functions (cart, checkout), remember your
-                        preferences, and understand how our website is used. You can manage or disable cookies via your
-                        browser settings; essential cookies may be required for certain features to function properly.
-                    </p>
+                        <h3>3. Cookies &amp; Tracking</h3>
+                        <p>
+                            We use cookies and similar tools to enable core site functions (cart, checkout), remember
+                            your
+                            preferences, and understand how our website is used. You can manage or disable cookies via
+                            your
+                            browser settings; essential cookies may be required for certain features to function
+                            properly.
+                        </p>
 
-                    <h3>4. Payment &amp; Security</h3>
-                    <ul>
-                        <li>Online payments are routed through PCI-DSS compliant payment gateways; sensitive payment data is handled by the gateway and not stored on our servers.</li>
-                        <li>We use SSL/TLS encryption and access controls to protect personal data.</li>
-                        <li>While we strive for full security, no transmission over the internet is 100% secure; use the site at your own discretion.</li>
-                    </ul>
+                        <h3>4. Payment &amp; Security</h3>
+                        <ul>
+                            <li>Online payments are routed through PCI-DSS compliant payment gateways; sensitive payment
+                                data is handled by the gateway and not stored on our servers.</li>
+                            <li>We use SSL/TLS encryption and access controls to protect personal data.</li>
+                            <li>While we strive for full security, no transmission over the internet is 100% secure; use
+                                the site at your own discretion.</li>
+                        </ul>
 
-                    <h3>5. Data Sharing</h3>
-                    <p>
-                        We share only the minimum necessary information with third parties that help us run our business,
-                        such as courier partners for delivery, payment processors for transactions, and service providers
-                        for analytics and infrastructure. We do not sell your personal data.
-                    </p>
+                        <h3>5. Data Sharing</h3>
+                        <p>
+                            We share only the minimum necessary information with third parties that help us run our
+                            business,
+                            such as courier partners for delivery, payment processors for transactions, and service
+                            providers
+                            for analytics and infrastructure. We do not sell your personal data.
+                        </p>
 
-                    <h3>6. Your Choices &amp; Rights</h3>
-                    <ul>
-                        <li>Update or correct your contact details by writing to us.</li>
-                        <li>Request access to, or deletion of, your personal information where legally permissible.</li>
-                        <li>Opt out of non-essential marketing messages at any time.</li>
-                    </ul>
+                        <h3>6. Your Choices &amp; Rights</h3>
+                        <ul>
+                            <li>Update or correct your contact details by writing to us.</li>
+                            <li>Request access to, or deletion of, your personal information where legally permissible.
+                            </li>
+                            <li>Opt out of non-essential marketing messages at any time.</li>
+                        </ul>
 
-                    <h3>7. Data Retention</h3>
-                    <p>
-                        We retain order and billing records for as long as required for legal, accounting, and warranty
-                        purposes, and keep other personal data only as long as necessary to fulfill the purposes stated
-                        in this policy.
-                    </p>
+                        <h3>7. Data Retention</h3>
+                        <p>
+                            We retain order and billing records for as long as required for legal, accounting, and
+                            warranty
+                            purposes, and keep other personal data only as long as necessary to fulfill the purposes
+                            stated
+                            in this policy.
+                        </p>
 
-                    <h3>8. Children's Privacy</h3>
-                    <p>
-                        Our products and services are intended for adults. We do not knowingly collect personal
-                        information from children under 18 years of age. If you believe a minor has provided data,
-                        please contact us so we can delete it.
-                    </p>
+                        <h3>8. Children's Privacy</h3>
+                        <p>
+                            Our products and services are intended for adults. We do not knowingly collect personal
+                            information from children under 18 years of age. If you believe a minor has provided data,
+                            please contact us so we can delete it.
+                        </p>
 
-                    <h3>9. International Transfers</h3>
-                    <p>
-                        Data may be processed on servers located in India. If data is transferred outside India, we will
-                        take reasonable measures to ensure adequate protection in line with applicable laws.
-                    </p>
+                        <h3>9. International Transfers</h3>
+                        <p>
+                            Data may be processed on servers located in India. If data is transferred outside India, we
+                            will
+                            take reasonable measures to ensure adequate protection in line with applicable laws.
+                        </p>
 
-                    <h3>10. Policy Updates</h3>
-                    <p>
-                        We may update this Privacy Policy to reflect operational, legal, or regulatory changes. The
-                        revised date will be indicated at the top of the page. Continued use of the site after changes
-                        indicates acceptance of the updated policy.
-                    </p>
+                        <h3>10. Policy Updates</h3>
+                        <p>
+                            We may update this Privacy Policy to reflect operational, legal, or regulatory changes. The
+                            revised date will be indicated at the top of the page. Continued use of the site after
+                            changes
+                            indicates acceptance of the updated policy.
+                        </p>
 
-                    <h3>11. Contact Us</h3>
-                    <p>
-                        📱 <strong>WhatsApp:</strong> +91 9115936593<br>
-                        📧 <strong>Email:</strong> info@srijivastrashingarsewa.com<br>
-                        🕒 <strong>Support Hours:</strong> Monday to Saturday | 10:00 AM – 6:00 PM
-                    </p>
+                        <h3>11. Contact Us</h3>
+                        <p>
+                            📱 <strong>WhatsApp:</strong> +91 9115936593<br>
+                            📧 <strong>Email:</strong> info@srijivastrashingarsewa.com<br>
+                            🕒 <strong>Support Hours:</strong> Monday to Saturday | 10:00 AM – 6:00 PM
+                        </p>
 
+                    </div>
                 </div>
             </div>
         </div>
-    </div>
-</section>
+    </section>
 
     <!--=============================
         PRIVACY POLICY END
