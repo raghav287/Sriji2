@@ -169,7 +169,7 @@ $related_products = $stmt_rel->get_result();
     <!--=========================
         PAGE BANNER START
     ==========================-->
-    <section class="page_banner" style="background: url(assets/images/background/breadcrumb-bg.jpg);">
+    <section class="page_banner" style="background: url(assets/images/background/ban2.png);">
         <div class="page_banner_overlay">
             <div class="container">
                 <div class="row">

@@ -181,7 +181,7 @@ if ($color_res && $color_res->num_rows > 0) {
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
-            aspect-ratio: 38 / 5;
+            /* aspect-ratio: 38 / 5; */
             min-height: 160px;
         }
 

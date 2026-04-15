@@ -419,10 +419,18 @@ button {
 }
 
 .page_banner_overlay {
-    aspect-ratio: 38 / 5;
+    /* aspect-ratio: 38 / 5; */
     min-height: 160px;
-  padding: 50px 0px 41px 0px;
+    padding: 60px 0px 41px 0px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
     /* background-color: #0000004f; */
+}
+
+.page_banner_text {
+    width: 100%;
 }
 
 .page_banner_text h1 {

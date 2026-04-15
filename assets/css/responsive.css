@@ -3396,7 +3396,11 @@
         ABOUT US PAGE START
     ===========================*/
     .page_banner_overlay {
-        padding: 120px 0px 52px 0px;
+        padding: 50px 0px 30px 0px;
+    }
+
+    .page_banner {
+        margin-top: 70px;
     }
 
     .page_banner_text h1 {
@@ -4720,7 +4724,11 @@
         ABOUT US PAGE START
     ===========================*/
     .page_banner_overlay {
-        padding: 120px 0px 52px 0px;
+        padding: 60px 0px 40px 0px;
+    }
+
+    .page_banner {
+        margin-top: 70px;
     }
 
     .page_banner_text h1 {
@@ -6178,7 +6186,11 @@
         ABOUT US PAGE START
     ===========================*/
     .page_banner_overlay {
-        padding: 120px 0px 52px 0px;
+        padding: 60px 0px 40px 0px;
+    }
+
+    .page_banner {
+        margin-top: 70px;
     }
 
     .page_banner_text h1 {
